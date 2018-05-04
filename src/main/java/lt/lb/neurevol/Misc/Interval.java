@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Misc;
+
+/**
+ *
+ * @author Laimonas-Beniusis-PC
+ */
+public class Interval {
+
+    private double min, max;
+
+    public Interval(double min, double max) {
+        this.max = max;
+        this.min = min;
+    }
+
+    public double getDiff() {
+        return max - min;
+    }
+
+    public double getAbsDiff() {
+        return Math.abs(getDiff());
+    }
+
+    public boolean inRange(double val, boolean minInclusive, boolean maxInclusive) {
+        boolean inRange = true;
+
+        if (minInclusive) {
+            inRange = val >= min;
+        } else {
+            inRange = val > min;
+        }
+
+        if (inRange) {
+            if (maxInclusive) {
+                inRange = val <= max;
+            } else {
+                inRange = val < max;
+            }
+        }
+
+        return inRange;
+
+    }
+
+    public boolean inRangeExclusive(double val) {
+        return this.inRange(val, false, false);
+    }
+
+    public boolean inRangeInclusive(double val) {
+        return this.inRange(val, true, true);
+    }
+
+    public double clamp(double val) {
+        return Math.min(Math.max(val, min), max);
+    }
+
+    public void expand(double val) {
+        if (this.max < val) {
+            this.max = val;
+        }
+
+        if (this.min > val) {
+            this.min = val;
+        }
+    }
+
+}
