@@ -5,10 +5,10 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import LibraryLB.ArrayBasedCounter;
-import LibraryLB.Containers.Value;
-import LibraryLB.Log;
-import LibraryLB.Threads.Promise;
+import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.Containers.Value;
+import lt.lb.commons.Log;
+import lt.lb.commons.Threads.Promise;
 import Misc.Interval;
 import java.io.Serializable;
 import java.util.*;
@@ -140,7 +140,7 @@ public class Pool implements Serializable {
                 continue;
             }
 
-            Promise culler = new Promise(() -> {
+            new Promise(() -> {
                 List<Genome> cullSpecies = s.cullSpecies(SELECTION, false);
                 for (Genome g : cullSpecies) {
                     Log.print("Dead:" + g.fitness);

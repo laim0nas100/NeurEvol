@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Neural;
 
-import LibraryLB.Log;
+import lt.lb.commons.Log;
 import java.util.*;
 
 /**

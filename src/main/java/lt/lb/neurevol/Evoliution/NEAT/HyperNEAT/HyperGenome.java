@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
-import LibraryLB.Log;
+import lt.lb.commons.Log;
 import java.util.ArrayList;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 import lt.lb.neurevol.Neural.CPPN.Pos;

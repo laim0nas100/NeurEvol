@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.interfaces;
 
-import LibraryLB.ArrayBasedCounter;
+import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 
 /**

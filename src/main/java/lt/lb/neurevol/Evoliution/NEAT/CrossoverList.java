@@ -5,8 +5,8 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import LibraryLB.ArrayBasedCounter;
-import LibraryLB.Log;
+import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.Log;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import lt.lb.neurevol.Misc.F;

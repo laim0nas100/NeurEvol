@@ -1,6 +1,6 @@
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import LibraryLB.ArrayBasedCounter;
+import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.Neural.Synapse;
 
 public class Gene extends Synapse implements Comparable, Cloneable {

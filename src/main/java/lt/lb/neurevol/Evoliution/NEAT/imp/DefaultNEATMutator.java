@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.imp;
 
-import LibraryLB.ArrayBasedCounter;
+import lt.lb.commons.ArrayBasedCounter;
 import java.util.*;
 import lt.lb.neurevol.Evoliution.NEAT.Gene;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
