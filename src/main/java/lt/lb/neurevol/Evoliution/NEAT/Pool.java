@@ -5,14 +5,14 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import lt.lb.commons.ArrayBasedCounter;
-import lt.lb.commons.Containers.Value;
-import lt.lb.commons.Log;
-import lt.lb.commons.Threads.Promise;
 import Misc.Interval;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.Containers.Value;
+import lt.lb.commons.Log;
+import lt.lb.commons.Threads.Promise;
 import lt.lb.neurevol.Evoliution.Control.Config;
 
 /**
@@ -46,8 +46,14 @@ public class Pool implements Serializable {
 
     private void addBest(Genome g) {
 
-        if (this.allTimeBest == null || this.allTimeBest.fitness <= g.fitness) {
+        Comparator<Genome> cmp = conf.getGenomeSorter().getComparator();
+        if (this.allTimeBest == null || cmp.compare(g, this.allTimeBest) < 0) {
+            if (this.allTimeBest != null) {
+                Log.print("Replace best was:" + this.allTimeBest.fitness + " now:" + g.fitness);
+            }
+
             this.allTimeBest = g;
+
         }
         bestGenomes.addLast(g);
     }
@@ -124,9 +130,16 @@ public class Pool implements Serializable {
 
     public void newGeneration() {
         Value<Species> bestSpecies = new Value<>();
+
+        for (Genome g : this.getPopulation()) {
+            if (g.fitness == null) {
+                throw new AssertionError("Genome :" + g.toString() + " fitness is null");
+            }
+        }
         bestSpecies.set(species.get(0));
+
         this.generation++;
-        this.similarities = new Interval(0, 0);
+        this.similarities = Interval.newExtendable();
         ConcurrentLinkedDeque<Species> survived = new ConcurrentLinkedDeque<>();
 
         LinkedList<Promise> promises = new LinkedList<>();
@@ -157,13 +170,13 @@ public class Pool implements Serializable {
         for (Species s : species) {
             if (!s.genomes.isEmpty()) {
 
-                if (s.getLeader().fitness > s.bestFitness) {
+                if (s.bestFitness == null || s.getLeader().fitness.compareTo(s.bestFitness) > 0) {
                     s.staleness = 0;
                     s.bestFitness = s.getLeader().fitness;
                 } else {
                     s.staleness++;
                 }
-                if (bestSpecies.get().bestFitness < s.bestFitness) {
+                if (bestSpecies.get().bestFitness == null || bestSpecies.get().bestFitness.compareTo(s.bestFitness) < 0) {
                     bestSpecies.set(s);
                 }
                 survived.add(s);
@@ -178,10 +191,10 @@ public class Pool implements Serializable {
         Log.print("Remove stale");
         Genome best = null;
         for (Species s : species) {
-            if (s.staleness < this.maxStaleness || s.bestFitness >= this.getCurrentBest().fitness || s.id == bestSpecies.get().id) {
+            if (s.staleness < this.maxStaleness || s.bestFitness.compareTo(this.getCurrentBest().fitness) >= 0 || s.id == bestSpecies.get().id) {
                 survived.add(s);
 
-                if (best == null || best.fitness < s.getLeader().fitness) {
+                if (best == null || s.getLeader().fitness.compareTo(best.fitness) < 0) {
                     best = s.getLeader();
                 }
             }
@@ -367,28 +380,8 @@ public class Pool implements Serializable {
     public Pool() {
         species = new ArrayList<>();
         bestGenomes = new LinkedList<>();
-        similarities = new Interval(0, 0);
+        similarities = Interval.newExtendable();
         this.innovation = new ArrayBasedCounter(1);
     }
 
-    public void prepareToSerialize() {
-        for (Species s : species) {
-            s.backup = (new ArrayList<>(s.cullSpecies(0, true)));
-        }
-    }
-
-    public void restoreAfterSerialize() {
-        for (Species s : species) {
-            s.genomes.addAll(s.backup);
-            s.backup.clear();
-        }
-    }
-
-    public void afterDeserialization() {
-        recreateSpecies(this.getPopulation());
-        equalCloning(this.getPopulation());
-        for (Genome g : this.getPopulation()) {
-            g.needUpdate = true;
-        }
-    }
 }

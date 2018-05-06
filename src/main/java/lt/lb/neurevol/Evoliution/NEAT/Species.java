@@ -7,6 +7,8 @@ package lt.lb.neurevol.Evoliution.NEAT;
 
 import java.io.Serializable;
 import java.util.*;
+import lt.lb.neurevol.Evoliution.Control.Config;
+import lt.lb.neurevol.Evoliution.NEAT.interfaces.Fitness;
 
 /**
  *
@@ -15,19 +17,21 @@ import java.util.*;
 public class Species implements Serializable {
 
     public transient int id;
-    public double bestFitness = 0.0;
+    public Fitness bestFitness;
     public transient double avgRank = 0.0;
     public int staleness = 0;
-    public transient ArrayList<Genome> backup = new ArrayList<>();
     public ArrayList<Genome> genomes = new ArrayList<>();
 
+    public Config conf;
+
     public Genome getLeader() {
-        Collections.sort(genomes, Genome.fitnessDescending);
+
+        Collections.sort(genomes, conf.getGenomeSorter().getComparator());
         return genomes.get(0);
     }
 
     public List<Genome> cullSpecies(double selection, boolean leave1) {
-        Collections.sort(genomes, Genome.fitnessDescending);
+        Collections.sort(genomes, conf.getGenomeSorter().getComparator());
         int survivors = 1;
         if (!leave1) {
             survivors = (int) Math.ceil(selection * genomes.size());

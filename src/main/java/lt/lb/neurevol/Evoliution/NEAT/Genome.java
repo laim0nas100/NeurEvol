@@ -6,6 +6,7 @@
 package lt.lb.neurevol.Evoliution.NEAT;
 
 import java.util.*;
+import lt.lb.neurevol.Evoliution.NEAT.interfaces.Fitness;
 import lt.lb.neurevol.Misc.F;
 import lt.lb.neurevol.Neural.*;
 
@@ -15,15 +16,13 @@ import lt.lb.neurevol.Neural.*;
  */
 public class Genome implements Cloneable {
 
-    public static Comparator<Genome> fitnessAscending = (Genome o1, Genome o2) -> Double.compare(o1.fitness, o2.fitness);
-    public static Comparator<Genome> fitnessDescending = (Genome o1, Genome o2) -> Double.compare(o2.fitness, o1.fitness);
     public static Map<Integer, ActivationFunction> activationMap = F.getDefaultActivationMap();
 
     public PriorityQueue<Gene> genes = new PriorityQueue<>();
     protected transient NeuralNetwork network;
     public ArrayList<NeuronInfo> bias = new ArrayList<>();
 
-    public float fitness;
+    public Fitness fitness;
     public transient int globalRank;
     public int input, output;
     public transient boolean needUpdate = false;

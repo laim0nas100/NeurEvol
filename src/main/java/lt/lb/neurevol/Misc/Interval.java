@@ -18,6 +18,10 @@ public class Interval {
         this.min = min;
     }
 
+    public static Interval newExtendable() {
+        return new Interval(Double.MAX_VALUE, -Double.MAX_VALUE);
+    }
+
     public double getDiff() {
         return max - min;
     }
