@@ -10,6 +10,7 @@ import java.util.List;
 import lt.lb.neurevol.Evoliution.NEAT.*;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.GenomeBreeder;
 import lt.lb.neurevol.Misc.F;
+import lt.lb.neurevol.Misc.Pair;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 public class DefaultGenomeBreeder implements GenomeBreeder {
@@ -23,10 +24,10 @@ public class DefaultGenomeBreeder implements GenomeBreeder {
         child.bias.clear();
         child.genes.clear();
         CrossoverList cross = new CrossoverList(parents.peekFirst(), parents.peekLast());
-        for (CrossoverList.Pair<? extends NeuronInfo> pair : cross.biasList) {
+        for (Pair<? extends NeuronInfo> pair : cross.biasList) {
             child.bias.add((NeuronInfo) pair.getRandom().clone());
         }
-        for (CrossoverList.Pair<? extends Gene> pair : cross.geneList) {
+        for (Pair<? extends Gene> pair : cross.geneList) {
             child.genes.add(pair.getRandom());
         }
         return child;

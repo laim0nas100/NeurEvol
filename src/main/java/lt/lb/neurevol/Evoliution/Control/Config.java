@@ -7,7 +7,7 @@ package lt.lb.neurevol.Evoliution.Control;
 
 import java.util.Map;
 import java.util.concurrent.Executor;
-import lt.lb.neurevol.Evoliution.NEAT.Pool;
+import lt.lb.neurevol.Evoliution.NEAT.Poolimp;
 import lt.lb.neurevol.Evoliution.NEAT.Species;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.*;
 
@@ -19,7 +19,7 @@ public interface Config {
 
     public Map<String, Double> getMap();
 
-    public Pool getPool();
+    public Poolimp getPool();
 
     public GenomeMaker getGenomeMaker();
 

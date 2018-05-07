@@ -15,6 +15,13 @@ import lt.lb.neurevol.Neural.ActivationFunction;
  */
 public class F {
 
+    public static interface Transformer<TypeFrom, TypeTo> {
+
+        public default TypeTo cast(TypeFrom from) {
+            return (TypeTo) from;
+        }
+    }
+
     public static <T> void merge(List<T> l1, List<T> l2, List<T> addTo, Comparator<T> cmp) {
         Iterator<T> i1 = l1.iterator();
         Iterator<T> i2 = l2.iterator();
@@ -98,6 +105,22 @@ public class F {
         T pickRandom = pickRandom(col);
         col.remove(pickRandom);
         return pickRandom;
+    }
+
+    public static <T, K> List<T> castCollection(Collection<K> collection, Transformer<K, T> trans) {
+        ArrayList<T> list = new ArrayList<>(collection.size());
+        for (K item : collection) {
+            list.add(trans.cast(item));
+        }
+        return list;
+
+    }
+
+    public static <T, K> List<T> castCollection(Collection<K> collection) {
+        Transformer<K, T> tr = new Transformer() {
+        };
+        return castCollection(collection, tr);
+
     }
 
     public static Random RND = new SecureRandom();

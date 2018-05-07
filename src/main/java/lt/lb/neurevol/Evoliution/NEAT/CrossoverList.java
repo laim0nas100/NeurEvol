@@ -9,7 +9,7 @@ import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.commons.Log;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import lt.lb.neurevol.Misc.F;
+import lt.lb.neurevol.Misc.Pair;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**
@@ -25,41 +25,6 @@ public class CrossoverList {
     public double biasSum = 0.0;
     public ArrayDeque<Pair<? extends Gene>> geneList = new ArrayDeque<>();
     public ArrayList<Pair<? extends NeuronInfo>> biasList = new ArrayList<>();
-
-    public static class Pair<T> {
-
-        public T g1 = null;
-        public T g2 = null;
-
-        public Pair(T g1, T g2) {
-            this.g1 = g2;
-            this.g2 = g2;
-        }
-
-        public Pair() {
-
-        }
-
-        public boolean full() {
-            return this.g1 != null && this.g2 != null;
-        }
-
-        public T getRandom() {
-            if (full()) {
-                if (F.RND.nextBoolean()) {
-                    return g1;
-                } else {
-                    return g2;
-                }
-            } else {
-                if (g1 == null) {
-                    return g2;
-                } else {
-                    return g1;
-                }
-            }
-        }
-    }
 
     public CrossoverList(Genome net1, Genome net2) {
 

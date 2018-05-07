@@ -14,12 +14,13 @@ import lt.lb.commons.Containers.Value;
 import lt.lb.commons.Log;
 import lt.lb.commons.Threads.Promise;
 import lt.lb.neurevol.Evoliution.Control.Config;
+import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
 
 /**
  *
  * @author Lemmin
  */
-public class Pool implements Serializable {
+public class Poolimp implements Serializable, Pool {
 
     public transient Config conf;
 
@@ -128,6 +129,7 @@ public class Pool implements Serializable {
         return null;
     }
 
+    @Override
     public void newGeneration() {
         Value<Species> bestSpecies = new Value<>();
 
@@ -357,6 +359,7 @@ public class Pool implements Serializable {
         }
     }
 
+    @Override
     public List<Genome> getPopulation() {
         ArrayList<Genome> pop = new ArrayList<>(this.populationSize);
         for (Species s : species) {
@@ -365,7 +368,7 @@ public class Pool implements Serializable {
         return pop;
     }
 
-    public Pool(Config conf) {
+    public Poolimp(Config conf) {
         this();
         this.conf = conf;
         Collection<Genome> gen = conf.getGenomeMaker().initializeGeneration();
@@ -377,11 +380,22 @@ public class Pool implements Serializable {
 
     }
 
-    public Pool() {
+    public Poolimp() {
         species = new ArrayList<>();
         bestGenomes = new LinkedList<>();
         similarities = Interval.newExtendable();
         this.innovation = new ArrayBasedCounter(1);
+    }
+
+    @Override
+    public List<List<Genome>> getSubpopulations() {
+        List<List<Genome>> list = new ArrayList<>();
+        for (Species spec : this.species) {
+            ArrayList<Genome> genomes = new ArrayList<>();
+            genomes.addAll(spec.genomes);
+            list.add(genomes);
+        }
+        return list;
     }
 
 }

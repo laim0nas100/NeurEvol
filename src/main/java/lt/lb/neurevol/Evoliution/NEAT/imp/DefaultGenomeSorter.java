@@ -12,9 +12,6 @@ import lt.lb.neurevol.Evoliution.NEAT.interfaces.GenomeSorter;
 public class DefaultGenomeSorter implements GenomeSorter {
 
     public Comparator<Genome> fitnessAscending = (Genome o1, Genome o2) -> {
-//        float f1 = ((FloatFitness) o1.fitness).get();
-//        float f2 = ((FloatFitness) o2.fitness).get();
-//        return Float.compare(f1, f2);
 
         return o1.fitness.compareTo(o2.fitness);
     };
@@ -33,11 +30,6 @@ public class DefaultGenomeSorter implements GenomeSorter {
             g.globalRank = rank++;
         }
 
-    }
-
-    @Override
-    public Comparator<Genome> getComparator() {
-        return (Genome t, Genome t1) -> this.fitnessDescending.compare(t, t1);
     }
 
 }

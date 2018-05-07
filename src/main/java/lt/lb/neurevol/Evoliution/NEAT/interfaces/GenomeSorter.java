@@ -17,6 +17,13 @@ public interface GenomeSorter {
 
     public void rankGlobaly(Collection<Genome> genomes);
 
-    public Comparator<Genome> getComparator();
+    /*
+        Better genome should appear before worse genome
+     */
+    public default Comparator<Genome> getComparator() {
+        return (Genome o1, Genome o2) -> {
+            return o2.fitness.compareTo(o1.fitness);
+        };
+    }
 
 }
