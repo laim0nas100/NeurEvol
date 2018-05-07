@@ -22,6 +22,8 @@ public class Genome implements Cloneable {
     protected transient NeuralNetwork network;
     public ArrayList<NeuronInfo> bias = new ArrayList<>();
 
+    public String id;
+
     public Fitness fitness;
     public transient int globalRank;
     public int input, output;

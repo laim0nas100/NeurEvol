@@ -18,7 +18,7 @@ public class FloatFitness extends Value<Float> implements Fitness {
     }
 
     @Override
-    public int compareTo(Object t) {
+    public int compareTo(Fitness t) {
         if (t instanceof FloatFitness) {
             return Float.compare(this.get(), ((FloatFitness) t).get());
         }

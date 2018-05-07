@@ -24,6 +24,8 @@ public class Poolimp implements Serializable, Pool {
 
     public transient Config conf;
 
+    public String poolID = System.currentTimeMillis() + "";
+
     public double SELECTION = 0.3;
 
     public double similarity = 1;
@@ -311,6 +313,11 @@ public class Poolimp implements Serializable, Pool {
             for (Genome g : newGeneration) {
                 assignToSpecies(g);
             }
+        }
+
+        int genomeID = 1;
+        for (Genome g : newGeneration) {
+            g.id = this.poolID.substring(this.poolID.length() - 5) + " " + genomeID++;
         }
     }
 
