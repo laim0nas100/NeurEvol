@@ -5,26 +5,36 @@
  */
 package lt.lb.neurevol.Evoliution.Coevolution;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import lt.lb.neurevol.Evoliution.NEAT.Genome;
-import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
+import java.util.*;
 import lt.lb.neurevol.Misc.Pair;
 
 public class PairwiseRelative implements PairingProducer {
 
     @Override
-    public Collection<Pair<Genome>> producePairs(Pool pool) {
-        ArrayList<Genome> population = new ArrayList<>(pool.getPopulation());
-        int size = population.size();
-        if (population.size() % 2 != 0 || population.isEmpty()) {
-            throw new IllegalStateException("Population size is not a multiple of 2, got:" + population.size());
+    public Collection<Pair<PairingInfo>> producePairs(Integer... sizes) {
+
+        if (sizes.length != 2 && sizes.length != 1) {
+            throw new IllegalStateException("Populations is not 2 or 1");
         }
 
-        ArrayList<Pair<Genome>> pairs = new ArrayList<>();
-        for (int i = 0; i < size; i += 2) {
-            pairs.add(new Pair<>(population.get(i), population.get(i + 1)));
+        if (sizes[0] % 2 != 0) {
+            throw new IllegalStateException("Population is not multiple of 2");
+        }
+        if (sizes.length == 2) {
+            if (!Objects.equals(sizes[0], sizes[1])) {
+                throw new IllegalStateException("Populations sizes are not equal");
+            }
+        }
+        ArrayList<Pair<PairingInfo>> pairs = new ArrayList<>();
 
+        if (sizes.length == 1) {
+            for (int i = 0; i < sizes[0]; i += 2) {
+                pairs.add(new Pair<>(new PairingInfo(0, i), new PairingInfo(0, i + 1)));
+            }
+        } else {
+            for (int i = 0; i < sizes[0]; i += 1) {
+                pairs.add(new Pair<>(new PairingInfo(0, i), new PairingInfo(1, i)));
+            }
         }
 
         return pairs;

@@ -20,7 +20,7 @@ import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
  *
  * @author Lemmin
  */
-public class Poolimp implements Serializable, Pool {
+public class NeatPool implements Serializable, Pool {
 
     public transient Config conf;
 
@@ -77,7 +77,7 @@ public class Poolimp implements Serializable, Pool {
                 final int i = index++;
                 new Promise(() -> {
 
-                    sim[i] = conf.getGenomeSimilarityEvaluater().similarity(s.getLeader(), g);
+                    sim[i] = conf.getGenomeSimilarityEvaluator().similarity(s.getLeader(), g);
                 }).collect(promises).execute(conf.getExecutor());
 
             }
@@ -375,19 +375,22 @@ public class Poolimp implements Serializable, Pool {
         return pop;
     }
 
-    public Poolimp(Config conf) {
+    public NeatPool(Config conf) {
         this();
         this.conf = conf;
         Collection<Genome> gen = conf.getGenomeMaker().initializeGeneration();
         this.populationSize = gen.size();
+        int i = 0;
         for (Genome g : gen) {
+            Log.print("Mutating genome " + i);
+            i++;
             conf.getGenomeMutator().mutate(g);
             assignToSpecies(g);
         }
 
     }
 
-    public Poolimp() {
+    public NeatPool() {
         species = new ArrayList<>();
         bestGenomes = new LinkedList<>();
         similarities = Interval.newExtendable();
@@ -403,6 +406,16 @@ public class Poolimp implements Serializable, Pool {
             list.add(genomes);
         }
         return list;
+    }
+
+    @Override
+    public int getGeneration() {
+        return this.generation;
+    }
+
+    @Override
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 
 }

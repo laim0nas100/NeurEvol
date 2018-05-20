@@ -5,12 +5,12 @@
  */
 package miscTest;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.util.Collection;
+import lt.lb.commons.Log;
+import lt.lb.neurevol.Evoliution.Coevolution.CompleteRelative;
+import lt.lb.neurevol.Evoliution.Coevolution.PairingInfo;
+import lt.lb.neurevol.Misc.Pair;
+import org.junit.*;
 
 /**
  *
@@ -41,7 +41,13 @@ public class NewEmptyJUnitTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void hello() {
-
+    public void testPairing() throws InterruptedException {
+        CompleteRelative rel = new CompleteRelative();
+        Collection<Pair<PairingInfo>> pairs = rel.producePairs(10, 20);
+        Log.print(pairs.size());
+        for (Pair<PairingInfo> p : pairs) {
+            Log.print(p);
+        }
+        Log.close();
     }
 }

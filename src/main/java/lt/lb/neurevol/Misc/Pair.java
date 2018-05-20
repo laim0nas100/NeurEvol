@@ -15,7 +15,7 @@ public class Pair<Type> {
     public Type g2 = null;
 
     public Pair(Type g1, Type g2) {
-        this.g1 = g2;
+        this.g1 = g1;
         this.g2 = g2;
     }
 
@@ -41,5 +41,10 @@ public class Pair<Type> {
                 return g1;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.g1 + " , " + this.g2;
     }
 }

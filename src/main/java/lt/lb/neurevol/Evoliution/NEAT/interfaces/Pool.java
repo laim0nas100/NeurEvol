@@ -5,9 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.interfaces;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 
 /**
@@ -27,5 +25,9 @@ public interface Pool {
     }
 
     public void newGeneration();
+
+    public int getGeneration();
+
+    public void setGeneration(int generation);
 
 }

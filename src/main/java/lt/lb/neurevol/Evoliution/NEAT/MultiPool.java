@@ -5,9 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
 
 /**
@@ -16,7 +14,14 @@ import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
  */
 public class MultiPool implements Pool {
 
+    public int generation = 0;
     public ArrayList<Pool> pools = new ArrayList<>();
+
+    public MultiPool(Pool... pools) {
+        for (Pool p : pools) {
+            this.pools.add(p);
+        }
+    }
 
     @Override
     public Collection<Genome> getPopulation() {
@@ -42,9 +47,19 @@ public class MultiPool implements Pool {
     public void newGeneration() {
 
         for (Pool p : pools) {
-
+            p.newGeneration();
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.generation++;
+    }
+
+    @Override
+    public int getGeneration() {
+        return this.generation;
+    }
+
+    @Override
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 
 }

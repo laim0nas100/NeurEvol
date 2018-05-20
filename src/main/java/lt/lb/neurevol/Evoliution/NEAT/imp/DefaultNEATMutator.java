@@ -5,8 +5,8 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.imp;
 
-import lt.lb.commons.ArrayBasedCounter;
 import java.util.*;
+import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.Evoliution.NEAT.Gene;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.GenomeMutator;
@@ -43,6 +43,7 @@ public class DefaultNEATMutator implements GenomeMutator {
     }
 
     private void mutateNode(Genome genome) {
+        genome.getNetwork();
         Gene gene = F.pickRandom(genome.genes);
         gene.en = false;
         int neuronID = genome.bias.size();
@@ -96,6 +97,7 @@ public class DefaultNEATMutator implements GenomeMutator {
     }
 
     private void mutateEnableDisable(Genome genome, final boolean enable) {
+        genome.getNetwork();
         List<Gene> candidates = new ArrayList<>();
         for (Gene gene : genome.genes) {
             if (gene.en != enable) {
@@ -114,19 +116,23 @@ public class DefaultNEATMutator implements GenomeMutator {
     public void mutate(Genome genome) {
 
         double prob = this.MUT_LINK;
-        while (prob > 0 || genome.genes.isEmpty()) {
-            if (F.RND.nextDouble() < prob) {
-                mutateLink(genome);
-                genome.needUpdate = true;
+        while (F.RND.nextDouble() < prob || genome.genes.isEmpty()) {
+//            Log.print("Mutate Link go");
+            mutateLink(genome);
+            genome.needUpdate = true;
 //                genome.generateNetwork();
-            }
-            prob--;
+            prob -= 1;
+//            Log.print("Mutate Link end");
+
         }
         if (MUT_NODE > F.RND.nextDouble()) {
+//            Log.print("Mutate Node go");
             mutateNode(genome);
             genome.needUpdate = true;
+//            Log.print("Mutate Mode end");
         }
         if (MUT_WEIGHT > F.RND.nextDouble()) { //mutate weights
+            genome.getNetwork();
             for (Gene g : genome.genes) {
                 if (MUT_WEIGHT_RESET < F.RND.nextDouble()) {
                     g.w = (2.0 * F.RND.nextDouble() - 1.0);
@@ -138,15 +144,21 @@ public class DefaultNEATMutator implements GenomeMutator {
             genome.needUpdate = true;
         }
         if (MUT_ENALBE > F.RND.nextDouble()) {
+//            Log.print("Mutate Enable go");
             this.mutateEnableDisable(genome, true);
+//            Log.print("Mutate Enable end");
             genome.needUpdate = true;
         }
         if (MUT_DISABLE > F.RND.nextDouble()) {
+//            Log.print("Mutate Disable go");
             this.mutateEnableDisable(genome, false);
+//            Log.print("Mutate Disable end");
             genome.needUpdate = true;
         }
 
         if (MUT_BIAS > F.RND.nextDouble()) {
+//            Log.print("Mutate Bias go");
+            genome.getNetwork();
             int index = F.RND.nextInt(genome.bias.size());
             NeuronInfo val = genome.bias.get(index);
             if (MUT_BIAS_RESET < F.RND.nextDouble()) {
@@ -155,6 +167,7 @@ public class DefaultNEATMutator implements GenomeMutator {
                 val.bias += 2 * F.RND.nextDouble() - 1;
             }
             val.bias %= this.weightCap;
+//            Log.print("Mutate Bias End");
             genome.needUpdate = true;
         }
 //        genome.needUpdate = true;

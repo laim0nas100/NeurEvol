@@ -6,8 +6,6 @@
 package lt.lb.neurevol.Evoliution.Coevolution;
 
 import java.util.Collection;
-import lt.lb.neurevol.Evoliution.NEAT.Genome;
-import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
 import lt.lb.neurevol.Misc.Pair;
 
 /**
@@ -16,6 +14,6 @@ import lt.lb.neurevol.Misc.Pair;
  */
 public interface PairingProducer {
 
-    public Collection<Pair<Genome>> producePairs(Pool pool);
+    public Collection<Pair<PairingInfo>> producePairs(Integer... sizes);
 
 }
