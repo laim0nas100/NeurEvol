@@ -148,11 +148,7 @@ public class F {
     }
 
     public static int randomSign() {
-        int sign = -1;
-        if (RND.nextBoolean()) {
-            sign = 1;
-        }
-        return sign;
+        return F.RND.nextBoolean() ? 1 : -1;
     }
 
     public static int StringNumCompare(String s1, String s2) {
