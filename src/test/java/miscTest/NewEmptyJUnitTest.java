@@ -5,10 +5,11 @@
  */
 package miscTest;
 
-import java.util.Collection;
+import java.util.*;
 import lt.lb.commons.Log;
 import lt.lb.neurevol.Evoliution.Coevolution.CompleteRelative;
 import lt.lb.neurevol.Evoliution.Coevolution.PairingInfo;
+import lt.lb.neurevol.Misc.F;
 import lt.lb.neurevol.Misc.Pair;
 import org.junit.*;
 
@@ -40,7 +41,7 @@ public class NewEmptyJUnitTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
+//    @Test
     public void testPairing() throws InterruptedException {
         CompleteRelative rel = new CompleteRelative();
         Collection<Pair<PairingInfo>> pairs = rel.producePairs(10, 20);
@@ -48,6 +49,95 @@ public class NewEmptyJUnitTest {
         for (Pair<PairingInfo> p : pairs) {
             Log.print(p);
         }
-        Log.close();
+//        Log.close();
+    }
+
+    @Test
+    public void finalStat() throws InterruptedException {
+        int size = 10000;
+
+        Double[] arr = new Double[size];
+        this.initArray(arr, () -> 0d);
+
+        long time = System.currentTimeMillis();
+
+        LinkedList l;
+        int times = 10;
+        for (int i = 0; i < times; i++) {
+            Double[] statShuffle = this.statShuffle(size);
+            for (int j = 0; j < size; j++) {
+                arr[j] += statShuffle[j];
+            }
+            Log.print("done " + i);
+        }
+
+        time = System.currentTimeMillis() - time;
+
+        for (int i = 0; i < size; i++) {
+            arr[i] /= times;
+        }
+
+        Log.print(Arrays.asList(arr));
+        Log.print(time);
+
+        Thread.sleep(1000);
+
+    }
+
+    private interface make<T> {
+
+        public T makeMe();
+    }
+
+    public <T> void initArray(T[] arr, make<T> m) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = m.makeMe();
+        }
+    }
+
+    public Double[] statShuffle(int size) throws InterruptedException {
+        Integer[] arr = new Integer[size];
+        initArray(arr, () -> 0);
+        for (int i = 0; i < 0; i++) {
+            arr[i] = 0;
+        }
+        for (int tr = 0; tr < 100; tr++) {
+            List<Integer> testShuffle = testShuffle(size);
+
+            for (int i = 0; i < size; i++) {
+                arr[i] += testShuffle.get(i);
+            }
+        }
+
+        double avg = 0;
+        for (int i = 0; i < 10; i++) {
+            avg += arr[i];
+        }
+        avg /= size;
+
+        Double[] avgAr = new Double[size];
+        initArray(avgAr, () -> 0d);
+
+        for (int i = 0; i < size; i++) {
+            avgAr[i] = arr[i] / avg;
+        }
+
+//        Log.print(avg);
+//        Log.print(Arrays.asList(arr));
+//        Log.print(Arrays.asList(avgAr));
+        return avgAr;
+    }
+
+    public List<Integer> testShuffle(int size) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            list.add(i);
+        }
+
+//        Log.print(list);
+        F.seededShuffle(list, F.RND);
+//        Log.print(list);
+        return list;
+
     }
 }

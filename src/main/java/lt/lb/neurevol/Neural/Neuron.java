@@ -18,7 +18,7 @@ public class Neuron {
     public double bias;
     public Double value = null;
     public ActivationFunction af;
-    public HashMap<Integer, Double> input = new HashMap<>();
+    public Map<Integer, Double> input = new HashMap<>();
 
     public Neuron(int i) {
         ID = i;
@@ -30,7 +30,7 @@ public class Neuron {
         }
     }
 
-    public double resolve(HashMap<Integer, Neuron> neurons) {
+    public double resolve(Map<Integer, Neuron> neurons) {
         if (value == null) {
             value = 0d;
             double d = 0;

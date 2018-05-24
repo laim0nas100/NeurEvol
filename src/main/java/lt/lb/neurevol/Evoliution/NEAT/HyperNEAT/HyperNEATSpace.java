@@ -7,6 +7,7 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import lt.lb.commons.Log;
 import lt.lb.neurevol.Neural.CPPN.Pos;
 
 /**
@@ -68,7 +69,7 @@ public class HyperNEATSpace {
                 idMap.put(p, i++);
             }
         }
-        System.out.println("HYPER NEAT SPACE INIT");
+        Log.println("HYPER NEAT SPACE INIT");
     }
 
     public Integer getLayers() {

@@ -127,7 +127,7 @@ public class F {
 
     public static void seededShuffle(List list, Random rnd) {
         Integer size = list.size();
-        LinkedList<Integer> indexArray = new LinkedList<>();
+        List<Integer> indexArray = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             indexArray.add(i);
         }

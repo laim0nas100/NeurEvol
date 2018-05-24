@@ -5,8 +5,9 @@
  */
 package lt.lb.neurevol.Neural;
 
-import lt.lb.commons.Log;
 import java.util.*;
+import lt.lb.commons.Log;
+import lt.lb.neurevol.Misc.F;
 
 /**
  *
@@ -15,10 +16,14 @@ import java.util.*;
 public class NeuralNetwork {
 
     public int inputs, outputs;
-    public HashMap<Integer, Neuron> neurons = new HashMap<>();
+    public Map<Integer, Neuron> neurons = new HashMap<>();
+
+    public NeuralNetwork(NNInfo nn) {
+        this(nn.inputs, nn.outputs, nn.links, nn.biases, nn.activationMap, nn.defaultActivation);
+    }
 
     public NeuralNetwork(int inputs, int outputs, Collection<? extends Synapse> genes, Collection<NeuronInfo> biases) {
-        this(inputs, outputs, genes, biases, new HashMap<>(), (d) -> Math.tanh(d));
+        this(inputs, outputs, genes, biases, new HashMap<>(), F::sigmoid);
     }
 
     public NeuralNetwork(int inputs, int outputs, Collection<? extends Synapse> links, Collection<NeuronInfo> biases,

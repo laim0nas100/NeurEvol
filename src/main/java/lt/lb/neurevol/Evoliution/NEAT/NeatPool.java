@@ -5,7 +5,6 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT;
 
-import Misc.Interval;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -15,6 +14,7 @@ import lt.lb.commons.Log;
 import lt.lb.commons.Threads.Promise;
 import lt.lb.neurevol.Evoliution.Control.Config;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
+import lt.lb.neurevol.Misc.Interval;
 
 /**
  *
@@ -33,7 +33,7 @@ public class NeatPool implements Serializable, Pool {
     public boolean strictSimilarity;
 
 //    public transient double[] similarities;
-    public transient Interval similarities;
+    public Interval similarities;
     public double similarityChangeRate = 0.12;
     public int distinctSpecies = 5;
 
