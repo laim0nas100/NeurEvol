@@ -9,17 +9,14 @@ package lt.lb.neurevol.Misc;
  *
  * @author Laimonas-Beniusis-PC
  */
-public class Interval {
-
-    private double min, max;
-
-    public Interval(double min, double max) {
-        this.max = max;
-        this.min = min;
-    }
+public class Interval extends MinMax {
 
     public static Interval newExtendable() {
         return new Interval(Double.MAX_VALUE, -Double.MAX_VALUE);
+    }
+
+    public Interval(Number min, Number max) {
+        super(min, max);
     }
 
     public double getDiff() {

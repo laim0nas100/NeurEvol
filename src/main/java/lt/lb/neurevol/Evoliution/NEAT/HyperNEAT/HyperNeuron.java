@@ -15,10 +15,17 @@ import lt.lb.neurevol.Neural.NeuronInfo;
 public class HyperNeuron extends NeuronInfo implements Cloneable {
 
     public Pos position;
+    public Integer id;
+    public String substrateLayerID;
 
     public HyperNeuron(Number... coordinates) {
         super();
         position = new Pos(coordinates);
+    }
+
+    public HyperNeuron(Pos pos) {
+        super();
+        this.position = pos;
     }
 
     @Override

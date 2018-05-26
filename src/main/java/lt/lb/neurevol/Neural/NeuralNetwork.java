@@ -53,10 +53,9 @@ public class NeuralNetwork {
     }
 
     public Double[] evaluate(Double[] inputs) {
+        cleanNeuronValues();
         Double[] output = new Double[this.outputs];
-        for (Neuron n : neurons.values()) {
-            n.value = null;
-        }
+
         ArrayList<Neuron> in = getInputs();
         for (int i = 0; i < this.inputs; i++) {
             Neuron n = in.get(i);
@@ -75,6 +74,28 @@ public class NeuralNetwork {
             list.add(neurons.get(i));
         }
         return list;
+    }
+
+    private void cleanNeuronValues() {
+        for (Neuron n : neurons.values()) {
+            n.value = null;
+        }
+    }
+
+    public Map<Integer, Neuron> evaluateByMap(Map<Integer, Double> values) {
+        this.cleanNeuronValues();
+        for (Map.Entry<Integer, Double> entry : values.entrySet()) {
+            this.neurons.get(entry.getKey()).value = entry.getValue();
+        }
+
+        Map<Integer, Neuron> output = new HashMap<>();
+        for (Neuron n : this.getOutputs()) {
+            n.resolve(neurons);
+            output.put(n.ID, n);
+        }
+
+        return output;
+
     }
 
     public final ArrayList<Neuron> getOutputs() {

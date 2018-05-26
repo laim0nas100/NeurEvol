@@ -18,6 +18,12 @@ public class Synapse implements Cloneable {
     public Synapse() {
     }
 
+    public Synapse(int in, int out, double w) {
+        this.in = in;
+        this.out = out;
+        this.w = w;
+    }
+
     @Override
     public Object clone() {
         Synapse cloned = null;

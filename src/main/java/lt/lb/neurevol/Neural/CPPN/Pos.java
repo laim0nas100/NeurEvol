@@ -6,6 +6,7 @@
 package lt.lb.neurevol.Neural.CPPN;
 
 import java.util.Arrays;
+import lt.lb.neurevol.Misc.MinMax;
 
 /**
  *
@@ -13,15 +14,6 @@ import java.util.Arrays;
  */
 public class Pos {
 
-    public static class MinMax {
-
-        public Number min, max;
-
-        public MinMax(Number min, Number max) {
-            this.min = min;
-            this.max = max;
-        }
-    }
     private Double[] vector;
 
     public Pos(Number... coordinates) {
@@ -34,8 +26,8 @@ public class Pos {
     public Double[] normalized(MinMax[] minmax) {
         Double[] res = new Double[vector.length];
         for (int i = 0; i < vector.length; i++) {
-            Double min = minmax[i].min.doubleValue();
-            Double max = minmax[i].max.doubleValue();
+            Double min = minmax[i].min;
+            Double max = minmax[i].max;
             res[i] = (vector[i] - min) / (max - min);
         }
         return res;

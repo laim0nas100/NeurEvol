@@ -41,18 +41,30 @@ public class HyperNEATSpace {
     public final void initialPositions() {
         layers = new ArrayList<>();
         idMap = new HashMap<>();
-        for (int i = 0; i < getLayers(); i++) {
+        for (int i = 0; i < getLayerCount(); i++) {
             layers.add(new ArrayList<>());
         }
-
         for (int i = 0; i < getDimensionSum(); i++) {
+
             Integer[] var = new Integer[dimensions.length];
+
             int t = i;
             for (int j = 0; j < dimensions.length; j++) {
                 var[j] = t % dimensions[j];
                 t = t / dimensions[j];
             }
-            Pos p = new Pos(var);
+
+            Pos p;
+            if (this.getLayerCount() != 1) {
+                p = new Pos(var);
+            } else {
+                Integer[] var2 = new Integer[dimensions.length - 1];
+                for (int j = 0; j < var2.length; j++) {
+                    var2[j] = var[j];
+                }
+                p = new Pos(var2);
+
+            }
             int last = var[var.length - 1];
             layers.get(last).add(p);
         }
@@ -60,7 +72,7 @@ public class HyperNEATSpace {
         for (Pos P : layers.get(0)) {
             idMap.put(P, i++);
         }
-        for (Pos P : layers.get(getLayers() - 1)) {
+        for (Pos P : layers.get(getLayerCount() - 1)) {
             idMap.put(P, i++);
         }
 
@@ -72,7 +84,7 @@ public class HyperNEATSpace {
         Log.println("HYPER NEAT SPACE INIT");
     }
 
-    public Integer getLayers() {
+    public Integer getLayerCount() {
         return dimensions[dimensions.length - 1];
     }
 }

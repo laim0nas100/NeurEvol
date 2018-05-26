@@ -5,8 +5,7 @@
  */
 package lt.lb.neurevol.Neural;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -15,10 +14,9 @@ import java.util.Map;
 public class NNInfo {
 
     public int inputs, outputs;
-    public Map<Integer, Neuron> neurons;
-    public Collection<Synapse> links;
-    public Collection<NeuronInfo> biases;
-    public transient Map<Integer, ActivationFunction> activationMap;
+    public Collection<Synapse> links = new ArrayList<>();
+    public Collection<NeuronInfo> biases = new ArrayList<>();
+    public transient Map<Integer, ActivationFunction> activationMap = new HashMap<>();
     public transient ActivationFunction defaultActivation;
 
 }

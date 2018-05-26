@@ -52,7 +52,6 @@ public class NewEmptyJUnitTest {
 //        Log.close();
     }
 
-    @Test
     public void finalStat() throws InterruptedException {
         int size = 10000;
 
@@ -140,4 +139,5 @@ public class NewEmptyJUnitTest {
         return list;
 
     }
+
 }

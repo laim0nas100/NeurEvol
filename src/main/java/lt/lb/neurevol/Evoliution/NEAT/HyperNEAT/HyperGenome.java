@@ -5,11 +5,11 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
-import lt.lb.commons.Log;
 import java.util.ArrayList;
+import lt.lb.commons.Log;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
+import lt.lb.neurevol.Misc.MinMax;
 import lt.lb.neurevol.Neural.CPPN.Pos;
-import lt.lb.neurevol.Neural.CPPN.Pos.MinMax;
 import lt.lb.neurevol.Neural.*;
 
 /**
