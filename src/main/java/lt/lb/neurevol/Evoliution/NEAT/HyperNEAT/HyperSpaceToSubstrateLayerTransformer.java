@@ -11,6 +11,6 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
  */
 public interface HyperSpaceToSubstrateLayerTransformer {
 
-    public SubstrateNeuronLayer produce(HyperNEATSpace space);
+    public SubstrateNeuronLayer produce(HyperSpace space);
 
 }

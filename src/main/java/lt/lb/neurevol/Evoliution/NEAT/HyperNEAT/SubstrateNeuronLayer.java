@@ -7,6 +7,7 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
 import java.util.*;
 import lt.lb.neurevol.Misc.Pair;
+import lt.lb.neurevol.Misc.Pos;
 
 /**
  *
@@ -14,6 +15,35 @@ import lt.lb.neurevol.Misc.Pair;
  */
 public class SubstrateNeuronLayer extends SubstrateLayer {
 
+    public SubstrateNeuronLayer() {
+
+    }
+
+    public SubstrateNeuronLayer(String id) {
+        this.ID = id;
+    }
+
+    public HyperNeuron getClosestNeuronByPosisition(Pos p) {
+        if (this.neurons.isEmpty()) {
+            return null;
+        }
+
+        Double distance = Double.MAX_VALUE;
+        HyperNeuron neuron = null;
+
+        for (HyperNeuron n : this.neurons) {
+            if (neuron == null) {
+                neuron = n;
+                continue;
+            }
+            Double dis = n.position.manhattanDistance(p);
+            if (distance > dis) {
+                distance = dis;
+                neuron = n;
+            }
+        }
+        return neuron;
+    }
     public List<HyperNeuron> neurons = new ArrayList<>();
 
     public void resolveConnections(List<Pair<HyperNeuron>> list, Set<String> visited) {

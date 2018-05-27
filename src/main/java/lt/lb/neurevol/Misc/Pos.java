@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lt.lb.neurevol.Neural.CPPN;
+package lt.lb.neurevol.Misc;
 
 import java.util.Arrays;
-import lt.lb.neurevol.Misc.MinMax;
 
 /**
  *
@@ -56,6 +55,18 @@ public class Pos {
     @Override
     public String toString() {
         return Arrays.asList(vector).toString();
+    }
+
+    public Double manhattanDistance(Pos to) {
+        Double dis = 0d;
+        int len = Math.min(to.vector.length, this.vector.length);
+
+        for (int i = 0; i < len; i++) {
+            dis += Math.abs(this.vector[i] - to.vector[i]);
+        }
+
+        return dis;
+
     }
 
     public Double euclidianDistance(Pos to) {

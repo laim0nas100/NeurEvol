@@ -50,11 +50,11 @@ public class HyperNeatTest {
 
         Tracer t = Tracer.get("");
 
-        HyperNEATSpace sp1 = new HyperNEATSpace(2, 1, 1);
+        HyperSpace sp1 = new HyperSpace(2, 1, 1);
 
-        HyperNEATSpace hidden = new HyperNEATSpace(2, 2, 1);
+        HyperSpace hidden = new HyperSpace(2, 2, 1);
 
-        HyperNEATSpace outputSpace = new HyperNEATSpace(1, 3, 1);
+        HyperSpace outputSpace = new HyperSpace(1, 3, 1);
 //        t.dump(sp1);
 //        t.dump(hidden);
 //        t.dump(outputSpace);
@@ -91,7 +91,7 @@ public class HyperNeatTest {
             final String n1 = nl1.ID;
             final String n2 = nl2.ID;
             final String n3 = nl3.ID;
-            String inID = hIn.substrateLayerID;
+            String inID = hIn.substrateLayer.ID;
 
             if (inID.equals(n1)) {
                 use = 0;

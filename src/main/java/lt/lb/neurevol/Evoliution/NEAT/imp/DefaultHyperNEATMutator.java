@@ -18,7 +18,7 @@ import lt.lb.neurevol.Neural.NeuronInfo;
 public class DefaultHyperNEATMutator implements GenomeMutator {
 
     public double MUTATE_ACTIVE_FUNCTION = 0.3;
-    private GenomeMutator neatMutator = new DefaultNEATMutator();
+    public GenomeMutator neatMutator = new DefaultNEATMutator();
 
     @Override
     public void mutate(Genome genome) {

@@ -8,12 +8,10 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.imp;
 import java.util.*;
 import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.*;
 import lt.lb.neurevol.Misc.*;
-import lt.lb.neurevol.Neural.CPPN.Pos;
 import lt.lb.neurevol.Neural.*;
 
 public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer {
 
-    public int useOutput;
     public double threshold = 0.2;
     public Interval mm = new Interval(-1, 1);
     public Interval[] minmax = new Interval[5];

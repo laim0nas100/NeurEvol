@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
-import lt.lb.neurevol.Neural.CPPN.Pos;
+import lt.lb.neurevol.Misc.Pos;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**
@@ -16,7 +16,7 @@ public class HyperNeuron extends NeuronInfo implements Cloneable {
 
     public Pos position;
     public Integer id;
-    public String substrateLayerID;
+    public transient SubstrateLayer substrateLayer;
 
     public HyperNeuron(Number... coordinates) {
         super();

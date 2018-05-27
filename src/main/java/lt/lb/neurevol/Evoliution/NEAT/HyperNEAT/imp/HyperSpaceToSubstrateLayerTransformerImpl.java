@@ -7,12 +7,12 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.imp;
 
 import java.util.ArrayList;
 import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.*;
-import lt.lb.neurevol.Neural.CPPN.Pos;
+import lt.lb.neurevol.Misc.Pos;
 
 public class HyperSpaceToSubstrateLayerTransformerImpl implements HyperSpaceToSubstrateLayerTransformer {
 
     @Override
-    public SubstrateNeuronLayer produce(HyperNEATSpace space) {
+    public SubstrateNeuronLayer produce(HyperSpace space) {
 
         SubstrateNeuronLayer layer = new SubstrateNeuronLayer();
         for (ArrayList<Pos> posList : space.layers) {

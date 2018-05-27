@@ -77,26 +77,4 @@ public class Genome implements Cloneable {
         return network;
     }
 
-    public Double[] evaluate(Double[] input) {
-        if (network == null) {
-            generateNetwork();
-        }
-        return network.evaluate(input);
-    }
-
-    public double[] evaluate(double[] input) {
-        Double[] input1 = new Double[input.length];
-        for (int i = 0; i < input.length; i++) {
-            input1[i] = input[i];
-        }
-
-        Double[] output1 = evaluate(input1);
-        double[] outputar = new double[output1.length];
-        for (int i = 0; i < output1.length; i++) {
-            outputar[i] = output1[i];
-        }
-        return outputar;
-
-    }
-
 }

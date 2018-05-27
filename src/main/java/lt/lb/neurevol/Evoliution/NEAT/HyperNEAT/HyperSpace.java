@@ -8,20 +8,20 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import lt.lb.commons.Log;
-import lt.lb.neurevol.Neural.CPPN.Pos;
+import lt.lb.neurevol.Misc.Pos;
 
 /**
  *
  * @author Lemmin
  */
-public class HyperNEATSpace {
+public class HyperSpace {
 
     public ArrayList<ArrayList<Pos>> layers;
     public HashMap<Pos, Integer> idMap;
 
     public int[] dimensions;
 
-    public HyperNEATSpace(int... dimensions) {
+    public HyperSpace(int... dimensions) {
         this.dimensions = dimensions;
         this.initialPositions();
     }

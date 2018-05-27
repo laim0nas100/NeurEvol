@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import lt.lb.commons.Log;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 import lt.lb.neurevol.Misc.MinMax;
-import lt.lb.neurevol.Neural.CPPN.Pos;
+import lt.lb.neurevol.Misc.Pos;
 import lt.lb.neurevol.Neural.*;
 
 /**
@@ -24,7 +24,7 @@ public class HyperGenome extends Genome implements Cloneable {
     private static double minVal = -1d;
     private transient NeuralNetwork generated;
     private transient boolean updateGenerated;
-    public transient HyperNEATSpace space;
+    public transient HyperSpace space;
 
     public HyperGenome(int... dimensions) {
         super((dimensions.length - 1) * 2, 1);
@@ -52,14 +52,6 @@ public class HyperGenome extends Genome implements Cloneable {
             generateInner();
         }
         return this.generated;
-    }
-
-    @Override
-    public Double[] evaluate(Double[] input) {
-
-        Double[] evaluate = getEvaluatingNetwork().evaluate(input);
-//        Log.print("Hyper evaluate "+Arrays.toString(evaluate));
-        return evaluate;
     }
 
     private NeuralNetwork generateInner() {

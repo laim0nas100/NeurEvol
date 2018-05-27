@@ -45,7 +45,7 @@ public class Substrate {
                 }
                 for (HyperNeuron n : l.neurons) {
                     n.id = id++;
-                    n.substrateLayerID = l.ID;
+                    n.substrateLayer = l;
                 }
             } else {
                 throw new RuntimeException("Not supported");
