@@ -20,8 +20,7 @@ public class HGenome extends Genome {
     public transient SubstrateToNNInfoProducer nnProducer;
     public transient ConnectionProducer conProducer;
     public transient NNInfo cachedNNInfo;
-
-    public transient boolean updateNNInfo = false;
+    private transient NeuralNetwork lastUsedNet;
 
     public HGenome(int input, int output, Substrate subs, SubstrateToNNInfoProducer producer, ConnectionProducer conProd) {
         super(input, output);
@@ -37,21 +36,17 @@ public class HGenome extends Genome {
 
     public NNInfo generateNNInfo() {
         Log.print("Generate NNInfo");
-        cachedNNInfo = nnProducer.produce(subs, this.getNetwork(), conProducer);
-        updateNNInfo = false;
+        this.lastUsedNet = this.getNetwork();
+        cachedNNInfo = nnProducer.produce(subs, this.lastUsedNet, conProducer);
+        Log.print("Done generating");
         return cachedNNInfo;
     }
 
-    @Override
-    public NeuralNetwork getNetwork() {
-        this.updateNNInfo = needUpdate;
-        return super.getNetwork();
-    }
-
     public NNInfo getNNInfo() {
-        if (cachedNNInfo == null || updateNNInfo) {
+        if (this.lastUsedNet == null || !this.lastUsedNet.equals(this.getNetwork())) {
             return generateNNInfo();
         }
+        Log.print("Return old NNInfo");
         return cachedNNInfo;
     }
 

@@ -9,8 +9,7 @@ import java.util.*;
 import lt.lb.commons.Log;
 import lt.lb.neurevol.Evoliution.Coevolution.CompleteRelative;
 import lt.lb.neurevol.Evoliution.Coevolution.PairingInfo;
-import lt.lb.neurevol.Misc.F;
-import lt.lb.neurevol.Misc.Pair;
+import lt.lb.neurevol.Misc.*;
 import org.junit.*;
 
 /**
@@ -138,6 +137,16 @@ public class NewEmptyJUnitTest {
 //        Log.print(list);
         return list;
 
+    }
+
+    @Test
+    public void posTest() throws Exception {
+        Interval in = new Interval(0, 1);
+        Interval[] inn = new Interval[]{new Interval(0, 800), new Interval(0, 600)};
+        Pos pos = new Pos(400, 20);
+        Log.print(Arrays.asList(pos.normalized(inn, -1, 1)));
+
+        Thread.sleep(500);
     }
 
 }

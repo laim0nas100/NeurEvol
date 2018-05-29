@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
-import lt.lb.neurevol.Misc.Pos;
+import lt.lb.neurevol.Misc.*;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**
@@ -17,6 +17,15 @@ public class HyperNeuron extends NeuronInfo implements Cloneable {
     public Pos position;
     public Integer id;
     public transient SubstrateLayer substrateLayer;
+
+    public Interval[] getSpaceDimensions() {
+        if (this.substrateLayer instanceof DimentionInfo) {
+            DimentionInfo cast = F.cast(this.substrateLayer);
+
+            return cast.getDimentions();
+        }
+        throw new UnsupportedOperationException("Layer must implement " + DimentionInfo.class + " interface");
+    }
 
     public HyperNeuron(Number... coordinates) {
         super();

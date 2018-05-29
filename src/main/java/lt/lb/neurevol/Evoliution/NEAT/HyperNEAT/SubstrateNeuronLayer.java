@@ -6,14 +6,13 @@
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
 import java.util.*;
-import lt.lb.neurevol.Misc.Pair;
-import lt.lb.neurevol.Misc.Pos;
+import lt.lb.neurevol.Misc.*;
 
 /**
  *
  * @author Lemmin
  */
-public class SubstrateNeuronLayer extends SubstrateLayer {
+public class SubstrateNeuronLayer extends SubstrateLayer implements DimentionInfo {
 
     public SubstrateNeuronLayer() {
 
@@ -22,6 +21,9 @@ public class SubstrateNeuronLayer extends SubstrateLayer {
     public SubstrateNeuronLayer(String id) {
         this.ID = id;
     }
+
+    public Interval[] layerMinMax;
+    public List<HyperNeuron> neurons = new ArrayList<>();
 
     public HyperNeuron getClosestNeuronByPosisition(Pos p) {
         if (this.neurons.isEmpty()) {
@@ -44,7 +46,6 @@ public class SubstrateNeuronLayer extends SubstrateLayer {
         }
         return neuron;
     }
-    public List<HyperNeuron> neurons = new ArrayList<>();
 
     public void resolveConnections(List<Pair<HyperNeuron>> list, Set<String> visited) {
         if (visited.contains(this.ID)) {
@@ -69,6 +70,11 @@ public class SubstrateNeuronLayer extends SubstrateLayer {
 
         }
 
+    }
+
+    @Override
+    public Interval[] getDimentions() {
+        return this.layerMinMax;
     }
 
 }

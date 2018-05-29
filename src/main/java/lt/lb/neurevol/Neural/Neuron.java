@@ -26,7 +26,7 @@ public class Neuron {
 
     public void addLink(Synapse g) {
         if (g.out == ID) {
-            input.put(g.in, (double) g.w);
+            input.put(g.in, g.w);
         }
     }
 

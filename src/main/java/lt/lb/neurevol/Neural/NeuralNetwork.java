@@ -85,7 +85,8 @@ public class NeuralNetwork {
     public Map<Integer, Neuron> evaluateByMap(Map<Integer, Double> values) {
         this.cleanNeuronValues();
         for (Map.Entry<Integer, Double> entry : values.entrySet()) {
-            this.neurons.get(entry.getKey()).value = entry.getValue();
+            Neuron get = this.neurons.get(entry.getKey());
+            get.value = get.af.activate(entry.getValue() + get.bias);
         }
 
         Map<Integer, Neuron> output = new HashMap<>();

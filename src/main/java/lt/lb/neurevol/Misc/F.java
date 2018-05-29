@@ -22,6 +22,10 @@ public class F {
         }
     }
 
+    public static <T> T cast(Object ob) throws ClassCastException {
+        return (T) ob;
+    }
+
     public static <T> void merge(List<T> l1, List<T> l2, List<T> addTo, Comparator<T> cmp) {
         Iterator<T> i1 = l1.iterator();
         Iterator<T> i2 = l2.iterator();

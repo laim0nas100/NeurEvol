@@ -12,9 +12,7 @@ import lt.lb.neurevol.Neural.*;
 
 public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer {
 
-    public double threshold = 0.2;
-    public Interval mm = new Interval(-1, 1);
-    public Interval[] minmax = new Interval[5];
+    public Interval normalizationRange;
 
     @Override
     public NNInfo produce(Substrate subs, NeuralNetwork net, ConnectionProducer prod) {
@@ -39,9 +37,6 @@ public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer 
         for (HyperNeuron n : subs.getNeuronMap().values()) {
             info.biases.add(n);
         }
-        for (int i = 0; i < this.minmax.length; i++) {
-            this.minmax[i] = this.mm;
-        }
         List<Pair<HyperNeuron>> links = subs.produceLinks();
 
         Collection<Synapse> finalLinks = new ArrayDeque<>();
@@ -52,12 +47,12 @@ public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer 
             Pos posTo = pair.g2.position;
             int inputDim = posTo.dim() + posFrom.dim();
             Double[] input = new Double[inputDim];
-            Double[] normalizedFrom = posFrom.normalized(minmax);
+            Double[] normalizedFrom = posFrom.normalized(pair.g1.getSpaceDimensions(), this.normalizationRange.min, this.normalizationRange.max);
             int posFromDim = posFrom.dim();
             for (int i = 0; i < posFromDim; i++) {
                 input[i] = normalizedFrom[i];
             }
-            Double[] normalizedTo = posFrom.normalized(minmax);
+            Double[] normalizedTo = posTo.normalized(pair.g2.getSpaceDimensions(), this.normalizationRange.min, this.normalizationRange.max);
             for (int i = posFromDim; i < inputDim; i++) {
                 input[i] = normalizedTo[i - posFromDim];
             }
