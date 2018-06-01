@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.github.laim0nas100</groupId>
             <artifactId>Commons</artifactId>
-            <version>0.4.1</version>
+            <version>9ffaefd5faf95cd4e8c6694034142a63998e15e4</version>
         </dependency>
 <!--        <dependency>
             <groupId>lt.lb</groupId>

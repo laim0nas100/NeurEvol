@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
-import lt.lb.neurevol.Misc.*;
+import lt.lb.commons.Misc.*;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**

@@ -6,7 +6,7 @@
 package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT;
 
 import java.util.*;
-import lt.lb.neurevol.Misc.Pair;
+import lt.lb.commons.Misc.Pair;
 
 /**
  *

@@ -7,7 +7,7 @@ package lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.imp;
 
 import java.util.*;
 import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.*;
-import lt.lb.neurevol.Misc.*;
+import lt.lb.commons.Misc.*;
 import lt.lb.neurevol.Neural.*;
 
 public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer {
@@ -18,7 +18,7 @@ public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer 
     public NNInfo produce(Substrate subs, NeuralNetwork net, ConnectionProducer prod) {
 
         NNInfo info = new NNInfo();
-        info.activationMap = F.getDefaultActivationMap();
+        info.activationMap = HGenome.getDefaultActivationMap();
         int inputs = 0;
         int outputs = 0;
         info.defaultActivation = F::sigmoid;

@@ -6,8 +6,9 @@
 package lt.lb.neurevol.Evoliution.NEAT;
 
 import java.util.*;
+import lt.lb.commons.Misc.F;
+import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.HGenome;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.Fitness;
-import lt.lb.neurevol.Misc.F;
 import lt.lb.neurevol.Neural.*;
 
 /**
@@ -16,7 +17,7 @@ import lt.lb.neurevol.Neural.*;
  */
 public class Genome implements Cloneable {
 
-    public static Map<Integer, ActivationFunction> activationMap = F.getDefaultActivationMap();
+    public static Map<Integer, ActivationFunction> activationMap = HGenome.getDefaultActivationMap();
 
     public PriorityQueue<Gene> genes = new PriorityQueue<>();
     protected transient NeuralNetwork network;

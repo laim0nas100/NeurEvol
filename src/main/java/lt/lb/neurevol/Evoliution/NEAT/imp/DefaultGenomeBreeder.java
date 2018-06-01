@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import lt.lb.neurevol.Evoliution.NEAT.*;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.GenomeBreeder;
-import lt.lb.neurevol.Misc.F;
-import lt.lb.neurevol.Misc.Pair;
+import lt.lb.commons.Misc.F;
+import lt.lb.commons.Misc.Pair;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 public class DefaultGenomeBreeder implements GenomeBreeder {

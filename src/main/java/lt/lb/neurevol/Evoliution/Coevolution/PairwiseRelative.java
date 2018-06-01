@@ -6,7 +6,7 @@
 package lt.lb.neurevol.Evoliution.Coevolution;
 
 import java.util.*;
-import lt.lb.neurevol.Misc.Pair;
+import lt.lb.commons.Misc.Pair;
 
 public class PairwiseRelative implements PairingProducer {
 

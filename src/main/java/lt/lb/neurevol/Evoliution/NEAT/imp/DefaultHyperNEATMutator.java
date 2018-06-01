@@ -8,7 +8,7 @@ package lt.lb.neurevol.Evoliution.NEAT.imp;
 import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.Evoliution.NEAT.Genome;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.GenomeMutator;
-import lt.lb.neurevol.Misc.F;
+import lt.lb.commons.Misc.F;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**

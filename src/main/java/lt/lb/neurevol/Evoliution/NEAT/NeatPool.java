@@ -14,7 +14,7 @@ import lt.lb.commons.Log;
 import lt.lb.commons.Threads.Promise;
 import lt.lb.neurevol.Evoliution.Control.Config;
 import lt.lb.neurevol.Evoliution.NEAT.interfaces.Pool;
-import lt.lb.neurevol.Misc.Interval;
+import lt.lb.commons.Misc.Interval;
 
 /**
  *
