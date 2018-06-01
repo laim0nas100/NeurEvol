@@ -22,16 +22,16 @@
     
     <dependencies>
         
-<!--        <dependency>
+        <dependency>
             <groupId>com.github.laim0nas100</groupId>
             <artifactId>Commons</artifactId>
-            <version>0.4</version>
-        </dependency>-->
-        <dependency>
+            <version>0.4.1</version>
+        </dependency>
+<!--        <dependency>
             <groupId>lt.lb</groupId>
             <artifactId>Commons</artifactId>
             <version>local-jar</version>
-        </dependency>
+        </dependency>-->
         
         <dependency>
             <groupId>junit</groupId>

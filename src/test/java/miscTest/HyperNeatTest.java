@@ -12,6 +12,7 @@ import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.*;
 import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTransformerImpl;
 import lt.lb.neurevol.Evoliution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
 import lt.lb.neurevol.Evoliution.NEAT.imp.DefaultNEATMutator;
+import lt.lb.neurevol.Misc.Interval;
 import lt.lb.neurevol.Neural.*;
 import org.junit.*;
 
@@ -82,6 +83,7 @@ public class HyperNeatTest {
         subs.makeGlobalIDs();
 
         SubstrateToNNInfoProducerImpl prod = new SubstrateToNNInfoProducerImpl();
+        prod.normalizationRange = new Interval(0, 1);
         ConnectionProducer conProd = (NeuronInfo in, NeuronInfo to, Double[] weights) -> {
             HyperNeuron hIn = (HyperNeuron) in;
             HyperNeuron hTo = (HyperNeuron) to;
