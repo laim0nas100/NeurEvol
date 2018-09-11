@@ -6,8 +6,8 @@
 package lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp;
 
 import java.util.ArrayList;
-import lt.lb.commons.Misc.Interval;
-import lt.lb.commons.Misc.Pos;
+import lt.lb.commons.misc.Interval;
+import lt.lb.commons.misc.Pos;
 import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.*;
 
 public class HyperSpaceToSubstrateLayerTransformerImpl implements HyperSpaceToSubstrateLayerTransformer {

@@ -6,14 +6,18 @@
 package lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp;
 
 import java.util.*;
-import lt.lb.commons.Misc.*;
+import lt.lb.commons.containers.Pair;
+import lt.lb.commons.misc.F;
+import lt.lb.commons.misc.Interval;
+import lt.lb.commons.misc.Pos;
 import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.*;
 import lt.lb.neurevol.Neural.*;
-
+  
 public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer {
 
     public Interval normalizationRange;
 
+    
     @Override
     public NNInfo produce(Substrate subs, NeuralNetwork net, ConnectionProducer prod) {
 

@@ -16,7 +16,7 @@ import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.SubstrateLayer.SLayerType;
 import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTransformerImpl;
 import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
 import lt.lb.neurevol.Evolution.NEAT.imp.DefaultNEATMutator;
-import lt.lb.commons.Misc.Interval;
+import lt.lb.commons.misc.Interval;
 import lt.lb.neurevol.Neural.*;
 import org.junit.*;
 

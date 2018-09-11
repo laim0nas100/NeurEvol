@@ -9,7 +9,7 @@ import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.commons.Log;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import lt.lb.commons.Misc.Pair;
+import lt.lb.commons.containers.Pair;
 import lt.lb.neurevol.Neural.NeuronInfo;
 
 /**

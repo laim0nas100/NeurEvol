@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import lt.lb.commons.ArrayBasedCounter;
-import lt.lb.commons.Containers.Value;
 import lt.lb.commons.Log;
-import lt.lb.commons.Threads.Promise;
+import lt.lb.commons.containers.Value;
+import lt.lb.commons.misc.Interval;
+import lt.lb.commons.threads.Promise;
 import lt.lb.neurevol.Evolution.Control.Config;
 import lt.lb.neurevol.Evolution.NEAT.interfaces.Pool;
-import lt.lb.commons.Misc.Interval;
 
 /**
  *

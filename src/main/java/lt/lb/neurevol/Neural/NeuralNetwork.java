@@ -7,7 +7,7 @@ package lt.lb.neurevol.Neural;
 
 import java.util.*;
 import lt.lb.commons.Log;
-import lt.lb.commons.Misc.F;
+import lt.lb.commons.misc.F;
 
 /**
  *

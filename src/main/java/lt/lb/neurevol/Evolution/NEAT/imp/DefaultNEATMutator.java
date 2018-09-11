@@ -10,7 +10,7 @@ import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.Evolution.NEAT.Gene;
 import lt.lb.neurevol.Evolution.NEAT.Genome;
 import lt.lb.neurevol.Evolution.NEAT.interfaces.GenomeMutator;
-import lt.lb.commons.Misc.F;
+import lt.lb.commons.misc.F;
 import lt.lb.neurevol.Neural.*;
 
 /**

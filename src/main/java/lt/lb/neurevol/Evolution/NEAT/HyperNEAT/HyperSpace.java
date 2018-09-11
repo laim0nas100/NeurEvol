@@ -8,7 +8,7 @@ package lt.lb.neurevol.Evolution.NEAT.HyperNEAT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import lt.lb.commons.Log;
-import lt.lb.commons.Misc.Pos;
+import lt.lb.commons.misc.Pos;
 
 /**
  *

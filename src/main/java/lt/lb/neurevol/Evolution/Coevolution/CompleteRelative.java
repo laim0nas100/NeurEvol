@@ -6,7 +6,7 @@
 package lt.lb.neurevol.Evolution.Coevolution;
 
 import java.util.*;
-import lt.lb.commons.Misc.Pair;
+import lt.lb.commons.containers.Pair;
 
 public class CompleteRelative implements PairingProducer {
 

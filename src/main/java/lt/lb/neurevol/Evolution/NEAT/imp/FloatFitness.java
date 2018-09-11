@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.Evolution.NEAT.imp;
 
-import lt.lb.commons.Containers.Value;
+import lt.lb.commons.containers.Value;
 import lt.lb.neurevol.Evolution.NEAT.interfaces.Fitness;
 
 public class FloatFitness extends Value<Float> implements Fitness {

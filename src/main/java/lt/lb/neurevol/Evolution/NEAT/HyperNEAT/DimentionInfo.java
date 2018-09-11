@@ -5,7 +5,8 @@
  */
 package lt.lb.neurevol.Evolution.NEAT.HyperNEAT;
 
-import lt.lb.commons.Misc.Interval;
+import lt.lb.commons.misc.Interval;
+
 
 /**
  *

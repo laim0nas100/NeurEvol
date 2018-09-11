@@ -8,8 +8,8 @@ package lt.lb.neurevol.Evolution.NEAT.HyperNEAT;
 import java.util.ArrayList;
 import lt.lb.commons.Log;
 import lt.lb.neurevol.Evolution.NEAT.Genome;
-import lt.lb.commons.Misc.MinMax;
-import lt.lb.commons.Misc.Pos;
+import lt.lb.commons.misc.MinMax;
+import lt.lb.commons.misc.Pos;
 import lt.lb.neurevol.Neural.*;
 
 /**

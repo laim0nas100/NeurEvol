@@ -6,7 +6,7 @@
 package lt.lb.neurevol.Evolution.NEAT;
 
 import java.util.*;
-import lt.lb.commons.Misc.F;
+import lt.lb.commons.misc.F;
 import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.HGenome;
 import lt.lb.neurevol.Evolution.NEAT.interfaces.Fitness;
 import lt.lb.neurevol.Neural.*;

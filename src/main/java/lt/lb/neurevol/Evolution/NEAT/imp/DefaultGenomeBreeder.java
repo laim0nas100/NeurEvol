@@ -7,8 +7,8 @@ package lt.lb.neurevol.Evolution.NEAT.imp;
 
 import java.util.LinkedList;
 import java.util.List;
-import lt.lb.commons.Misc.F;
-import lt.lb.commons.Misc.Pair;
+import lt.lb.commons.containers.Pair;
+import lt.lb.commons.misc.F;
 import lt.lb.neurevol.Evolution.NEAT.*;
 import lt.lb.neurevol.Evolution.NEAT.interfaces.GenomeBreeder;
 import lt.lb.neurevol.Neural.NeuronInfo;
@@ -25,10 +25,10 @@ public class DefaultGenomeBreeder implements GenomeBreeder {
         child.genes.clear();
         CrossoverList cross = new CrossoverList(parents.peekFirst(), parents.peekLast());
         for (Pair<? extends NeuronInfo> pair : cross.biasList) {
-            child.bias.add((NeuronInfo) pair.getRandom().clone());
+            child.bias.add((NeuronInfo) pair.getRandomPreferNotNull(F.RND).clone());
         }
         for (Pair<? extends Gene> pair : cross.geneList) {
-            child.genes.add(pair.getRandom());
+            child.genes.add(pair.getRandomPreferNotNull(F.RND));
         }
         return child;
     }
