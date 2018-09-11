@@ -8,8 +8,8 @@ package miscTest;
 import java.util.*;
 import lt.lb.commons.Log;
 import lt.lb.commons.containers.Pair;
-import lt.lb.neurevol.Evolution.Coevolution.CompleteRelative;
-import lt.lb.neurevol.Evolution.Coevolution.PairingInfo;
+import lt.lb.neurevol.evolution.Coevolution.CompleteRelative;
+import lt.lb.neurevol.evolution.Coevolution.PairingInfo;
 import lt.lb.commons.misc.*;
 import org.junit.*;
 

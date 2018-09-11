@@ -5,19 +5,22 @@
  */
 package miscTest;
 
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.SubstrateNeuronLayer;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.HyperSpace;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.HyperNeuron;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.ConnectionProducer;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.Substrate;
+import lt.lb.neurevol.neural.NNInfo;
+import lt.lb.neurevol.neural.NeuronInfo;
+import lt.lb.neurevol.neural.NeuralNetwork;
+import lt.lb.neurevol.neural.Synapse;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.SubstrateNeuronLayer;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HyperSpace;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HyperNeuron;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.ConnectionProducer;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.Substrate;
 import lt.lb.commons.Tracer;
-import lt.lb.neurevol.Evolution.NEAT.Genome;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.SubstrateLayer.SLayerType;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTransformerImpl;
-import lt.lb.neurevol.Evolution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
-import lt.lb.neurevol.Evolution.NEAT.imp.DefaultNEATMutator;
+import lt.lb.neurevol.evolution.NEAT.Genome;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.SubstrateLayer.SLayerType;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTransformerImpl;
+import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
+import lt.lb.neurevol.evolution.NEAT.imp.DefaultNEATMutator;
 import lt.lb.commons.misc.Interval;
-import lt.lb.neurevol.Neural.*;
 import org.junit.*;
 
 /**
