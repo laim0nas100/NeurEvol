@@ -24,7 +24,7 @@ public class Species<T extends Agent> implements Serializable {
 
     public NEATConfig conf;
 
-    public Agent getLeader() {
+    public T getLeader() {
 
         Collections.sort(agents, conf.getSorter().getComparator());
         return agents.get(0);
@@ -51,7 +51,7 @@ public class Species<T extends Agent> implements Serializable {
 
     public double calculateAverageRank() {
         double total = 0.0;
-        for (final Agent genome : agents) {
+        for (final T genome : agents) {
             total += genome.globalRank;
         }
         avgRank = total / agents.size();

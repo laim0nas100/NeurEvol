@@ -14,6 +14,6 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
  */
 public interface AgentBreeder<T extends Agent> {
 
-    public T breedChild(List<T> genomes);
+    public List<T> breedChild(List<T> genomes);
 
 }

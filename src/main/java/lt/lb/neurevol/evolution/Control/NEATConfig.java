@@ -6,6 +6,7 @@
 package lt.lb.neurevol.evolution.Control;
 
 import java.util.concurrent.Executor;
+import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.Species;
 import lt.lb.neurevol.evolution.NEAT.interfaces.*;
 
@@ -13,21 +14,21 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.*;
  *
  * @author laim0nas100
  */
-public interface NEATConfig {
+public interface NEATConfig<T extends Agent> {
 
-    public Pool getPool();
+    public Pool<T> getPool();
 
-    public AgentMaker getMaker();
+    public AgentMaker<T> getMaker();
 
-    public AgentBreeder getBreeder();
+    public AgentBreeder<T> getBreeder();
 
-    public AgentMutator getMutator();
+    public AgentMutator<T> getMutator();
 
-    public AgentSorter getSorter();
+    public AgentSorter<T> getSorter();
 
-    public AgentSimilarityEvaluator getSimilarityEvaluator();
+    public AgentSimilarityEvaluator<T> getSimilarityEvaluator();
 
-    public Species newSpecies();
+    public Species<T> newSpecies();
 
     public Executor getSequentialExecutor();
 

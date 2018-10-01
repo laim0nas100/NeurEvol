@@ -6,6 +6,7 @@
 package lt.lb.neurevol.evolution.NEAT.imp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import lt.lb.commons.containers.Pair;
@@ -35,7 +36,7 @@ public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
     }
 
     @Override
-    public Genome breedChild(List<Genome> list) {
+    public List<Genome> breedChild(List<Genome> list) {
         int size = list.size();
         Genome child;
         if (size > 1 && F.RND.RND.nextDouble() < CROSSOVER) {
@@ -45,7 +46,7 @@ public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
         } else {
             child = (Genome) list.get(F.RND.RND.nextInt(size)).clone();
         }
-        return child;
+        return Arrays.asList(child);
     }
 
 }
