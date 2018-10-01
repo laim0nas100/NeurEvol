@@ -9,7 +9,7 @@ package lt.lb.neurevol.evolution.NEAT.interfaces;
  *
  * @author Lemmin
  */
-public interface Fitness extends Comparable<Fitness> {
+public interface Fitness extends Comparable<Fitness>{
 
     public static int compareNumberFitnessBiggerFirst(Number n1, Number n2) {
         double d1 = n1.doubleValue();

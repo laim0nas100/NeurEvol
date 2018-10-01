@@ -20,15 +20,15 @@ public interface Config {
 
     public Pool getPool();
 
-    public GenomeMaker getGenomeMaker();
+    public AgentMaker getMaker();
 
-    public GenomeBreeder getGenomeBreeder();
+    public AgentBreeder getBreeder();
 
-    public GenomeMutator getGenomeMutator();
+    public AgentMutator getMutator();
 
-    public GenomeSorter getGenomeSorter();
+    public AgentSorter getSorter();
 
-    public GenomeSimilarityEvaluator getGenomeSimilarityEvaluator();
+    public AgentSimilarityEvaluator getSimilarityEvaluator();
 
     public Species newSpecies();
 

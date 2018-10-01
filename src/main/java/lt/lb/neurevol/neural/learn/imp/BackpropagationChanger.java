@@ -30,28 +30,8 @@ public class BackpropagationChanger implements NeuralNetworkChanger {
         this.defaultDerivative = defaultDer;
     }
 
-    private static class BackNeuron extends Neuron {
-
-        ActivationFunction derivative;
-        boolean marked;
-
-        Map<Integer, Double> output = new HashMap<>();
-
-        public BackNeuron(int i) {
-            super(i);
-        }
-
-        @Override
-        public void addLink(Synapse s) {
-            super.addLink(s);
-            if (s.in == ID) {
-                output.put(s.out, s.w);
-            }
-        }
-    }
-
     @Override
-    public NNInfo call(NNInfo type) {
+    public NNInfo apply(NNInfo type) {
         Map<Integer, BackNeuron> neurons = new HashMap<>();
         F.iterate(type.biases, (i, n) -> {
               BackNeuron bn = new BackNeuron(i);
@@ -92,5 +72,26 @@ public class BackpropagationChanger implements NeuralNetworkChanger {
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    private static class BackNeuron extends Neuron {
+
+        ActivationFunction derivative;
+        boolean marked;
+
+        Map<Integer, Double> output = new HashMap<>();
+
+        public BackNeuron(int i) {
+            super(i);
+        }
+
+        @Override
+        public void addLink(Synapse s) {
+            super.addLink(s);
+            if (s.in == ID) {
+                output.put(s.out, s.w);
+            }
+        }
+    }
+
 
 }

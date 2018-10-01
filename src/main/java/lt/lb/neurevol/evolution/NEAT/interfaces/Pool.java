@@ -6,7 +6,7 @@
 package lt.lb.neurevol.evolution.NEAT.interfaces;
 
 import java.util.*;
-import lt.lb.neurevol.evolution.NEAT.Genome;
+import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
@@ -14,11 +14,11 @@ import lt.lb.neurevol.evolution.NEAT.Genome;
  */
 public interface Pool {
 
-    public Collection<Genome> getPopulation();
+    public Collection<Agent> getPopulation();
 
-    public default List<List<Genome>> getSubpopulations() {
-        ArrayList<List<Genome>> list = new ArrayList<>();
-        ArrayList<Genome> subpopulation = new ArrayList<>();
+    public default List<List<Agent>> getSubpopulations() {
+        ArrayList<List<Agent>> list = new ArrayList<>();
+        ArrayList<Agent> subpopulation = new ArrayList<>();
         subpopulation.addAll(this.getPopulation());
         list.add(subpopulation);
         return list;

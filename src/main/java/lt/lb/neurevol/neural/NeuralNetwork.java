@@ -7,6 +7,7 @@ package lt.lb.neurevol.neural;
 
 import java.util.*;
 import lt.lb.commons.Log;
+import lt.lb.commons.containers.PrefillArrayMap;
 import lt.lb.commons.containers.Tuple;
 import lt.lb.commons.misc.F;
 
@@ -17,7 +18,7 @@ import lt.lb.commons.misc.F;
 public class NeuralNetwork {
 
     public int inputs, outputs;
-    public Map<Integer, Neuron> neurons = new HashMap<>();
+    public Map<Integer, Neuron> neurons = new PrefillArrayMap<>();
 
     public NeuralNetwork(NNInfo nn) {
         this(nn.inputs, nn.outputs, nn.links, nn.biases, nn.activationMap, nn.defaultActivation);
@@ -146,7 +147,7 @@ public class NeuralNetwork {
             NeuronInfo ni = new NeuronInfo();
             ni.bias = get.bias;
 
-            Optional<Tuple<Integer, ActivationFunction>> iterate = F.iterate(activationMap, (k, fun) -> fun == get.af);
+            Optional<Tuple<Integer, ActivationFunction>> iterate = F.find(activationMap, (k, fun) -> fun == get.af);
 
             if (iterate.isPresent()) {
                 ni.afType = iterate.get().g1;

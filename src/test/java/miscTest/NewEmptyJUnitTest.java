@@ -134,7 +134,7 @@ public class NewEmptyJUnitTest {
         }
 
 //        Log.print(list);
-        F.seededShuffle(list, F.RND);
+        F.RND.seededShuffle(list, F.RND.RND);
 //        Log.print(list);
         return list;
 

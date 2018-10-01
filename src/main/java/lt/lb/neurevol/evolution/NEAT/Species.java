@@ -20,25 +20,25 @@ public class Species implements Serializable {
     public Fitness bestFitness;
     public transient double avgRank = 0.0;
     public int staleness = 0;
-    public ArrayList<Genome> genomes = new ArrayList<>();
+    public ArrayList<Agent> genomes = new ArrayList<>();
 
     public Config conf;
 
-    public Genome getLeader() {
+    public Agent getLeader() {
 
-        Collections.sort(genomes, conf.getGenomeSorter().getComparator());
+        Collections.sort(genomes, conf.getSorter().getComparator());
         return genomes.get(0);
     }
 
-    public List<Genome> cullSpecies(double selection, boolean leave1) {
-        Collections.sort(genomes, conf.getGenomeSorter().getComparator());
+    public List<Agent> cullSpecies(double selection, boolean leave1) {
+        Collections.sort(genomes, conf.getSorter().getComparator());
         int survivors = 1;
         if (!leave1) {
             survivors = (int) Math.ceil(selection * genomes.size());
         }
 
-        ArrayDeque<Genome> survived = new ArrayDeque<>(survivors);
-        LinkedList<Genome> dead = new LinkedList<>();
+        ArrayDeque<Agent> survived = new ArrayDeque<>(survivors);
+        LinkedList<Agent> dead = new LinkedList<>();
         dead.addAll(genomes);
         genomes.clear();
 
@@ -51,7 +51,7 @@ public class Species implements Serializable {
 
     public double calculateAverageRank() {
         double total = 0.0;
-        for (final Genome genome : genomes) {
+        for (final Agent genome : genomes) {
             total += genome.globalRank;
         }
         avgRank = total / genomes.size();

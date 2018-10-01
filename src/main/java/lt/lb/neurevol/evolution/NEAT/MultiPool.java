@@ -24,8 +24,8 @@ public class MultiPool implements Pool {
     }
 
     @Override
-    public Collection<Genome> getPopulation() {
-        ArrayList<Genome> list = new ArrayList<>();
+    public Collection<Agent> getPopulation() {
+        ArrayList<Agent> list = new ArrayList<>();
         for (Pool p : pools) {
             list.addAll(p.getPopulation());
         }
@@ -33,10 +33,10 @@ public class MultiPool implements Pool {
     }
 
     @Override
-    public List<List<Genome>> getSubpopulations() {
-        ArrayList<List<Genome>> list = new ArrayList<>();
+    public List<List<Agent>> getSubpopulations() {
+        ArrayList<List<Agent>> list = new ArrayList<>();
         for (Pool p : pools) {
-            ArrayList<Genome> genomes = new ArrayList<>();
+            ArrayList<Agent> genomes = new ArrayList<>();
             genomes.addAll(p.getPopulation());
             list.add(genomes);
         }

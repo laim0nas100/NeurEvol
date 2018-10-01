@@ -7,26 +7,31 @@ package lt.lb.neurevol.evolution.NEAT.imp;
 
 import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.commons.misc.F;
+import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.Genome;
-import lt.lb.neurevol.evolution.NEAT.interfaces.GenomeMutator;
 import lt.lb.neurevol.neural.NeuronInfo;
+import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
 
 /**
  *
  * @author Lemmin
  */
-public class DefaultHyperNEATMutator implements GenomeMutator {
+public class DefaultHyperNEATMutator implements AgentMutator {
 
     public double MUTATE_ACTIVE_FUNCTION = 0.3;
-    public GenomeMutator neatMutator = new DefaultNEATMutator();
+    public AgentMutator neatMutator = new DefaultNEATMutator();
 
     @Override
-    public void mutate(Genome genome) {
+    public void mutate(Agent a) {
+        mutateGenome(F.cast(a));
+    }
 
-        if (F.RND.nextDouble() < MUTATE_ACTIVE_FUNCTION) {
-            int index = F.RND.nextInt(genome.bias.size());
+    public void mutateGenome(Genome genome) {
+
+        if (F.RND.RND.nextDouble() < MUTATE_ACTIVE_FUNCTION) {
+            int index = F.RND.nextInt(F.RND.RND,0,genome.bias.size());
             NeuronInfo get = genome.bias.get(index);
-            get.afType = F.RND.nextInt(Genome.activationMap.size());
+            get.afType = F.RND.nextInt(F.RND.RND,0,Genome.activationMap.size());
             genome.needUpdate = true;
         }
         neatMutator.mutate(genome);

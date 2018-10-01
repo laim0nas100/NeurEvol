@@ -5,21 +5,28 @@
  */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
+import lt.lb.commons.misc.F;
+import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.CrossoverList;
 import lt.lb.neurevol.evolution.NEAT.Genome;
-import lt.lb.neurevol.evolution.NEAT.interfaces.GenomeSimilarityEvaluator;
+import lt.lb.neurevol.evolution.NEAT.interfaces.AgentSimilarityEvaluator;
 
 /**
  *
  * @author Laimonas-Beniusis-PC
  */
-public class DefaultGenomeSimilarityEvaluator implements GenomeSimilarityEvaluator {
+public class DefaultGenomeSimilarityEvaluator implements AgentSimilarityEvaluator {
 
     public double DELTA_DISJOINT = 1;
     public double DELTA_EXCESS = 1;
     public double DELTA_WEIGHTS = 0.4;
-
+    
     @Override
+    public double similarity(Agent a1, Agent a2){
+        return similarity(F.cast(a1),F.cast(a2));
+    }
+
+    
     public double similarity(Genome net1, Genome net2) {
 //        double e = Double.MIN_VALUE;
         CrossoverList cross = new CrossoverList(net1, net2);

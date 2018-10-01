@@ -5,42 +5,45 @@
  */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import lt.lb.commons.containers.Pair;
 import lt.lb.commons.misc.F;
 import lt.lb.neurevol.evolution.NEAT.*;
-import lt.lb.neurevol.evolution.NEAT.interfaces.GenomeBreeder;
 import lt.lb.neurevol.neural.NeuronInfo;
+import lt.lb.neurevol.evolution.NEAT.interfaces.AgentBreeder;
 
-public class DefaultGenomeBreeder implements GenomeBreeder {
+public class DefaultGenomeBreeder implements AgentBreeder {
 
     public double CROSSOVER = 0.7;
 
     private Genome crossover(List<Genome> list) {
         Genome child;
-        LinkedList<Genome> parents = F.pickRandomPreferLow(list, 2, list.size(), 1);
+        LinkedList<Genome> parents = F.RND.pickRandomPreferLow(F.RND.RND,list, 2, list.size(), 1);
         child = (Genome) parents.peekFirst().clone();
         child.bias.clear();
         child.genes.clear();
         CrossoverList cross = new CrossoverList(parents.peekFirst(), parents.peekLast());
         for (Pair<? extends NeuronInfo> pair : cross.biasList) {
-            child.bias.add((NeuronInfo) pair.getRandomPreferNotNull(F.RND).clone());
+            child.bias.add((NeuronInfo) pair.getRandomPreferNotNull(F.RND.RND).clone());
         }
         for (Pair<? extends Gene> pair : cross.geneList) {
-            child.genes.add(pair.getRandomPreferNotNull(F.RND));
+            child.genes.add(pair.getRandomPreferNotNull(F.RND.RND));
         }
         return child;
     }
 
     @Override
-    public Genome breedChild(List<Genome> list) {
+    public Agent breedChild(List<Agent> list) {
         int size = list.size();
         Genome child;
-        if (size > 1 && F.RND.nextDouble() < CROSSOVER) {
-            child = crossover(list);
+        if (size > 1 && F.RND.RND.nextDouble() < CROSSOVER) {
+            ArrayList<Genome> castList = new ArrayList<>(list.size());
+            F.addCast(list, castList);
+            child = crossover(castList);
         } else {
-            child = (Genome) list.get(F.RND.nextInt(size)).clone();
+            child = (Genome) list.get(F.RND.RND.nextInt(size)).clone();
         }
         return child;
     }

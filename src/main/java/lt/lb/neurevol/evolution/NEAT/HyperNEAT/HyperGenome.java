@@ -18,6 +18,7 @@ import lt.lb.commons.misc.Pos;
  *
  * @author lemmin
  */
+@Deprecated
 public class HyperGenome extends Genome implements Cloneable {
 
     //main network generates the evaluating network

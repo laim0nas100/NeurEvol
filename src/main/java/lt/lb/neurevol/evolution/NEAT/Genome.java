@@ -17,7 +17,7 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
  *
  * @author Lemmin
  */
-public class Genome implements Cloneable {
+public class Genome extends Agent implements Cloneable {
 
     public static Map<Integer, ActivationFunction> activationMap = HGenome.getDefaultActivationMap();
 
@@ -25,10 +25,6 @@ public class Genome implements Cloneable {
     protected transient NeuralNetwork network;
     public ArrayList<NeuronInfo> bias = new ArrayList<>();
 
-    public String id;
-
-    public Fitness fitness;
-    public transient int globalRank;
     public int input, output;
     public transient boolean needUpdate = false;
 
@@ -45,21 +41,16 @@ public class Genome implements Cloneable {
 
     @Override
     public Object clone() {
-
-        try {
-            Genome genome = (Genome) super.clone();
-            genome.genes = new PriorityQueue<>();
-            genome.bias = new ArrayList<>();
-            for (Gene g : new ArrayList<>(this.genes)) {
-                genome.genes.add((Gene) g.clone());
-            }
-            for (NeuronInfo info : this.bias) {
-                genome.bias.add((NeuronInfo) info.clone());
-            }
-            return genome;
-        } catch (CloneNotSupportedException ex) {
-            throw new AssertionError();
+        Genome genome = (Genome) super.clone();
+        genome.genes = new PriorityQueue<>();
+        genome.bias = new ArrayList<>();
+        for (Gene g : new ArrayList<>(this.genes)) {
+            genome.genes.add((Gene) g.clone());
         }
+        for (NeuronInfo info : this.bias) {
+            genome.bias.add((NeuronInfo) info.clone());
+        }
+        return genome;
     }
 
     public NeuralNetwork getNetwork() {

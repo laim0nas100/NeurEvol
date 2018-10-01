@@ -39,10 +39,10 @@ public class HGenome extends Genome {
     }
 
     public NNInfo generateNNInfo() {
-        Log.print("Generate NNInfo");
+//        Log.print("Generate NNInfo");
         this.lastUsedNet = this.getNetwork();
         cachedNNInfo = nnProducer.produce(subs, this.lastUsedNet, conProducer);
-        Log.print("Done generating");
+//        Log.print("Done generating");
         return cachedNNInfo;
     }
 
@@ -50,7 +50,7 @@ public class HGenome extends Genome {
         if (this.lastUsedNet == null || !this.lastUsedNet.equals(this.getNetwork())) {
             return generateNNInfo();
         }
-        Log.print("Return old NNInfo");
+//        Log.print("Return old NNInfo");
         return cachedNNInfo;
     }
 
@@ -67,7 +67,7 @@ public class HGenome extends Genome {
         map.put(i++, x -> -x);
         map.put(i++, Math::sin);
         map.put(i++, Math::sinh);
-        //buvo tan
+        map.put(i++, Math::tanh);
 
         map.put(i++, x -> Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI));//gaussian
         map.put(i++, x -> Math.abs(x));
