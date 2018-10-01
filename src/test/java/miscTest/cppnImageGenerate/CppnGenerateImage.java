@@ -31,7 +31,7 @@ import org.junit.Test;
 
 /**
  *
- * @author labe2219
+ * @author laim0nas100
  */
 public class CppnGenerateImage {
 

@@ -7,17 +7,16 @@ package lt.lb.neurevol.evolution.NEAT.imp;
 
 import java.util.*;
 import lt.lb.neurevol.evolution.NEAT.Agent;
-import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentSorter;
 
-public class DefaultGenomeSorter implements AgentSorter {
+public class DefaultGenomeSorter implements AgentSorter<Agent> {
 
-    public Comparator<Genome> fitnessAscending = (Genome o1, Genome o2) -> {
+    public Comparator<Agent> fitnessAscending = (Agent o1, Agent o2) -> {
 
         return o1.fitness.compareTo(o2.fitness);
     };
 
-    public Comparator<Genome> fitnessDescending = fitnessAscending.reversed();
+    public Comparator<Agent> fitnessDescending = fitnessAscending.reversed();
 
     @Override
     public void rankGlobaly(Collection<Agent> genomes) {

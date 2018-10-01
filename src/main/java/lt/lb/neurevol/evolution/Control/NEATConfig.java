@@ -5,18 +5,15 @@
  */
 package lt.lb.neurevol.evolution.Control;
 
-import java.util.Map;
 import java.util.concurrent.Executor;
 import lt.lb.neurevol.evolution.NEAT.Species;
 import lt.lb.neurevol.evolution.NEAT.interfaces.*;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public interface Config {
-
-    public Map<String, Double> getMap();
+public interface NEATConfig {
 
     public Pool getPool();
 

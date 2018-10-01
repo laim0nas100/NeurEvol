@@ -10,7 +10,7 @@ import lt.lb.neurevol.neural.Synapse;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public interface ConnectionProducer {
 

@@ -14,7 +14,7 @@ import lt.lb.neurevol.neural.learn.NeuralNetworkChanger;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class BackpropagationChanger implements NeuralNetworkChanger {
 

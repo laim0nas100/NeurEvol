@@ -10,9 +10,9 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public interface AgentMaker {
+public interface AgentMaker <T extends Agent> {
 
-    public Collection<Agent> initializeGeneration();
+    public Collection<T> initializeGeneration();
 }

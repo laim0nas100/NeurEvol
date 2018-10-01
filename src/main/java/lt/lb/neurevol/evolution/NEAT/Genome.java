@@ -15,7 +15,7 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class Genome extends Agent implements Cloneable {
 

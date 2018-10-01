@@ -12,7 +12,7 @@ import lt.lb.commons.misc.Pos;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class HyperSpace {
 

@@ -7,7 +7,7 @@ package lt.lb.neurevol.neural;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class NeuronInfo implements Cloneable {
 

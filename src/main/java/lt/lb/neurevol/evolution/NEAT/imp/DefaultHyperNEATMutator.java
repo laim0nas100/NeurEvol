@@ -7,26 +7,22 @@ package lt.lb.neurevol.evolution.NEAT.imp;
 
 import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.commons.misc.F;
-import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public class DefaultHyperNEATMutator implements AgentMutator {
+public class DefaultHyperNEATMutator implements AgentMutator<Genome> {
 
     public double MUTATE_ACTIVE_FUNCTION = 0.3;
     public AgentMutator neatMutator = new DefaultNEATMutator();
 
-    @Override
-    public void mutate(Agent a) {
-        mutateGenome(F.cast(a));
-    }
 
-    public void mutateGenome(Genome genome) {
+    @Override
+    public void mutate(Genome genome) {
 
         if (F.RND.RND.nextDouble() < MUTATE_ACTIVE_FUNCTION) {
             int index = F.RND.nextInt(F.RND.RND,0,genome.bias.size());

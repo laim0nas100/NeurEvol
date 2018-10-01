@@ -13,7 +13,7 @@ import lt.lb.commons.misc.F;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class NeuralNetwork {
 

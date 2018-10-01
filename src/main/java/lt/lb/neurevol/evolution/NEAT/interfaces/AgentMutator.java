@@ -10,14 +10,18 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public interface AgentMutator {
+public interface AgentMutator<T extends Agent> {
 
-    public void mutate(Agent genome);
+    public void mutate(T agent);
 
-    public void setInnovation(ArrayBasedCounter counter);
+    public default void setInnovation(ArrayBasedCounter counter){
+        
+    }
 
-    public ArrayBasedCounter getInnovation();
+    public default ArrayBasedCounter getInnovation(){
+        throw new UnsupportedOperationException("ArrayBasedCounter is not needed");
+    }
 
 }

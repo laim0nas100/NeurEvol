@@ -9,10 +9,10 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public interface AgentSimilarityEvaluator {
+public interface AgentSimilarityEvaluator<T extends Agent> {
 
-    public double similarity(Agent g1, Agent g2);
+    public double similarity(T g1, T g2);
 
 }

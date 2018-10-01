@@ -13,20 +13,16 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.AgentSimilarityEvaluator;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public class DefaultGenomeSimilarityEvaluator implements AgentSimilarityEvaluator {
+public class DefaultGenomeSimilarityEvaluator implements AgentSimilarityEvaluator<Genome> {
 
     public double DELTA_DISJOINT = 1;
     public double DELTA_EXCESS = 1;
     public double DELTA_WEIGHTS = 0.4;
     
-    @Override
-    public double similarity(Agent a1, Agent a2){
-        return similarity(F.cast(a1),F.cast(a2));
-    }
-
     
+    @Override
     public double similarity(Genome net1, Genome net2) {
 //        double e = Double.MIN_VALUE;
         CrossoverList cross = new CrossoverList(net1, net2);

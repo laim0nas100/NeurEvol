@@ -7,58 +7,58 @@ package lt.lb.neurevol.evolution.NEAT;
 
 import java.io.Serializable;
 import java.util.*;
-import lt.lb.neurevol.evolution.Control.Config;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
+import lt.lb.neurevol.evolution.Control.NEATConfig;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public class Species implements Serializable {
+public class Species<T extends Agent> implements Serializable {
 
     public transient int id;
     public Fitness bestFitness;
     public transient double avgRank = 0.0;
     public int staleness = 0;
-    public ArrayList<Agent> genomes = new ArrayList<>();
+    public ArrayList<T> agents = new ArrayList<>();
 
-    public Config conf;
+    public NEATConfig conf;
 
     public Agent getLeader() {
 
-        Collections.sort(genomes, conf.getSorter().getComparator());
-        return genomes.get(0);
+        Collections.sort(agents, conf.getSorter().getComparator());
+        return agents.get(0);
     }
 
-    public List<Agent> cullSpecies(double selection, boolean leave1) {
-        Collections.sort(genomes, conf.getSorter().getComparator());
+    public List<T> cullSpecies(double selection, boolean leave1) {
+        Collections.sort(agents, conf.getSorter().getComparator());
         int survivors = 1;
         if (!leave1) {
-            survivors = (int) Math.ceil(selection * genomes.size());
+            survivors = (int) Math.ceil(selection * agents.size());
         }
 
-        ArrayDeque<Agent> survived = new ArrayDeque<>(survivors);
-        LinkedList<Agent> dead = new LinkedList<>();
-        dead.addAll(genomes);
-        genomes.clear();
+        ArrayDeque<T> survived = new ArrayDeque<>(survivors);
+        LinkedList<T> dead = new LinkedList<>();
+        dead.addAll(agents);
+        agents.clear();
 
         for (int i = 0; i < survivors; i++) {
             survived.add(dead.removeFirst());
         }
-        genomes.addAll(survived);
+        agents.addAll(survived);
         return dead;
     }
 
     public double calculateAverageRank() {
         double total = 0.0;
-        for (final Agent genome : genomes) {
+        for (final Agent genome : agents) {
             total += genome.globalRank;
         }
-        avgRank = total / genomes.size();
+        avgRank = total / agents.size();
         return avgRank;
     }
 
     public int size() {
-        return genomes.size();
+        return agents.size();
     }
 }

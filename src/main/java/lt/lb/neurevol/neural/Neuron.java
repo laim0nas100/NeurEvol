@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class Neuron {
 

@@ -19,9 +19,9 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public class DefaultNEATMutator implements AgentMutator {
+public class DefaultNEATMutator implements AgentMutator<Genome> {
 
     public ArrayBasedCounter innovation;
 
@@ -118,12 +118,9 @@ public class DefaultNEATMutator implements AgentMutator {
         gene.en = !gene.en;
     }
 
-    @Override
-    public void mutate(Agent a) {
-        mutateGenome(F.cast(a));
-    }
 
-    public void mutateGenome(Genome genome) {
+    @Override
+    public void mutate(Genome genome) {
 
         double prob = this.MUT_LINK;
         while (rnd.nextDouble() < prob || genome.genes.isEmpty()) {

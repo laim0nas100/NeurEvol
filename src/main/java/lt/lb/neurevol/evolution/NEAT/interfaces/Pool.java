@@ -10,15 +10,15 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public interface Pool {
+public interface Pool<T extends Agent> {
 
-    public Collection<Agent> getPopulation();
+    public Collection<T> getPopulation();
 
-    public default List<List<Agent>> getSubpopulations() {
-        ArrayList<List<Agent>> list = new ArrayList<>();
-        ArrayList<Agent> subpopulation = new ArrayList<>();
+    public default List<List<T>> getSubpopulations() {
+        ArrayList<List<T>> list = new ArrayList<>();
+        ArrayList<T> subpopulation = new ArrayList<>();
         subpopulation.addAll(this.getPopulation());
         list.add(subpopulation);
         return list;

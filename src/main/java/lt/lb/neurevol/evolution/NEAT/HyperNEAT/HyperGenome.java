@@ -16,7 +16,7 @@ import lt.lb.commons.misc.Pos;
 
 /**
  *
- * @author lemmin
+ * @author laim0nas100
  */
 @Deprecated
 public class HyperGenome extends Genome implements Cloneable {

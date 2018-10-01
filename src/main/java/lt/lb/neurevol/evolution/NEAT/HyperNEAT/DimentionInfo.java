@@ -10,7 +10,7 @@ import lt.lb.commons.misc.Interval;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public interface DimentionInfo {
 

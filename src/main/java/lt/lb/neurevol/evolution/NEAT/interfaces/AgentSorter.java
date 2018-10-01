@@ -11,17 +11,17 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public interface AgentSorter {
+public interface AgentSorter<T extends Agent> {
 
-    public void rankGlobaly(Collection<Agent> genomes);
+    public void rankGlobaly(Collection<T> agents);
 
     /*
         Better genome should appear before worse genome
      */
-    public default Comparator<Agent> getComparator() {
-        return (Agent o1, Agent o2) -> {
+    public default Comparator<T> getComparator() {
+        return (T o1, T o2) -> {
             return o2.fitness.compareTo(o1.fitness);
         };
     }

@@ -10,10 +10,10 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
-public interface AgentBreeder {
+public interface AgentBreeder<T extends Agent> {
 
-    public Agent breedChild(List<Agent> genomes);
+    public T breedChild(List<T> genomes);
 
 }

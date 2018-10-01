@@ -13,16 +13,16 @@ import lt.lb.commons.Log;
 import lt.lb.commons.containers.Value;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.threads.Promise;
-import lt.lb.neurevol.evolution.Control.Config;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Pool;
+import lt.lb.neurevol.evolution.Control.NEATConfig;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
-public class NeatPool implements Serializable, Pool {
+public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
-    public transient Config conf;
+    public transient NEATConfig conf;
 
     public String poolID = System.currentTimeMillis() + "";
 
@@ -43,7 +43,7 @@ public class NeatPool implements Serializable, Pool {
 
     public Agent allTimeBest;
 
-    public LinkedList<Agent> bestGenomes;
+    public LinkedList<Agent> bestAgents;
     public ArrayBasedCounter innovation;
     public ArrayList<Species> species;
 
@@ -58,11 +58,11 @@ public class NeatPool implements Serializable, Pool {
             this.allTimeBest = g;
 
         }
-        bestGenomes.addLast(g);
+        bestAgents.addLast(g);
     }
 
     public Agent getCurrentBest() {
-        return bestGenomes.getLast();
+        return bestAgents.getLast();
     }
 
     public void assignToSpecies(Agent g) {
@@ -95,10 +95,10 @@ public class NeatPool implements Serializable, Pool {
 
         if (toAssign == -1) {
             Species spe = conf.newSpecies();
-            spe.genomes.add(g);
+            spe.agents.add(g);
             species.add(spe);
         } else {
-            species.get(toAssign).genomes.add(g);
+            species.get(toAssign).agents.add(g);
         }
 //        Log.print("similarity:",bestSimilarity);
 
@@ -153,7 +153,7 @@ public class NeatPool implements Serializable, Pool {
         for (Species s : species) {
             s.id = index++;
 
-            if (s.genomes.isEmpty()) {
+            if (s.agents.isEmpty()) {
                 continue;
             }
 
@@ -172,7 +172,7 @@ public class NeatPool implements Serializable, Pool {
         resolve(new Promise().waitFor(promises).execute(conf.getExecutor()));
 
         for (Species s : species) {
-            if (!s.genomes.isEmpty()) {
+            if (!s.agents.isEmpty()) {
 
                 if (s.bestFitness == null || s.getLeader().fitness.compareTo(s.bestFitness) > 0) {
                     s.staleness = 0;
@@ -255,7 +255,7 @@ public class NeatPool implements Serializable, Pool {
             for (int i = 0; i < breed; i++) {
 //                this.breedChild(s.genomes);
                 new Promise(() -> {
-                    Agent breedChild = conf.getBreeder().breedChild(s.genomes);
+                    Agent breedChild = conf.getBreeder().breedChild(s.agents);
                     conf.getMutator().mutate(breedChild);
 
                     newGeneration.add(breedChild);
@@ -321,42 +321,40 @@ public class NeatPool implements Serializable, Pool {
         }
     }
 
-    public void recreateSpecies(Collection<Genome> ancestors) {
+    public void recreateSpecies(Collection<T> ancestors) {
         species.clear();
-        for (Genome ancestor : ancestors) {
+        for (T ancestor : ancestors) {
             Species s = new Species();
-            s.genomes.add(ancestor);
+            s.agents.add(ancestor);
             species.add(s);
         }
     }
 
-    public void newGeneration(Genome ancestor) {
-        ArrayList<Genome> list = new ArrayList<>(1);
+    public void newGeneration(T ancestor) {
+        ArrayList<T> list = new ArrayList<>(1);
         list.add(ancestor);
         newGeneration(list);
     }
 
-    public void newGeneration(Collection<Genome> ancestors) {
-        this.bestGenomes.clear();
+    public void newGeneration(Collection<T> ancestors) {
+        this.bestAgents.clear();
         recreateSpecies(ancestors);
         equalCloning(ancestors);
 
     }
 
-    public void equalCloning(Collection<Genome> ancestors) {
+    public void equalCloning(Collection<T> ancestors) {
         int size = ancestors.size();
         int sizePerSpecies = Math.max(this.populationSize / size, 1);
         int left = this.populationSize - size;
 
         while (left > 0) {
-            for (Genome ancestor : ancestors) {
+            for (T ancestor : ancestors) {
                 int create = Math.min(sizePerSpecies, left);
                 for (int i = 0; i < create; i++) {
-                    Genome g = (Genome) ancestor.clone();
+                    T g = (T) ancestor.clone();
                     conf.getMutator().mutate(g);
                     this.assignToSpecies(g);
-                    Log.print("In cloning Bias:" + ancestor.bias.size());
-                    Log.print("Cloning class" + ancestor.getClass());
                 }
                 left -= create;
                 if (left == 0) {
@@ -367,21 +365,21 @@ public class NeatPool implements Serializable, Pool {
     }
 
     @Override
-    public List<Agent> getPopulation() {
-        ArrayList<Agent> pop = new ArrayList<>(this.populationSize);
+    public List<T> getPopulation() {
+        ArrayList<T> pop = new ArrayList<>(this.populationSize);
         for (Species s : species) {
-            pop.addAll(s.genomes);
+            pop.addAll(s.agents);
         }
         return pop;
     }
 
-    public NeatPool(Config conf) {
+    public NeatPool(NEATConfig conf) {
         this();
         this.conf = conf;
-        Collection<Agent> gen = conf.getMaker().initializeGeneration();
+        Collection<T> gen = conf.getMaker().initializeGeneration();
         this.populationSize = gen.size();
         int i = 0;
-        for (Agent g : gen) {
+        for (T g : gen) {
             Log.print("Mutating genome " + i);
             i++;
             conf.getMutator().mutate(g);
@@ -392,17 +390,17 @@ public class NeatPool implements Serializable, Pool {
 
     public NeatPool() {
         species = new ArrayList<>();
-        bestGenomes = new LinkedList<>();
+        bestAgents = new LinkedList<>();
         similarities = Interval.newExtendable();
         this.innovation = new ArrayBasedCounter(1);
     }
 
     @Override
-    public List<List<Agent>> getSubpopulations() {
-        List<List<Agent>> list = new ArrayList<>();
+    public List<List<T>> getSubpopulations() {
+        List<List<T>> list = new ArrayList<>();
         for (Species spec : this.species) {
-            ArrayList<Agent> genomes = new ArrayList<>();
-            genomes.addAll(spec.genomes);
+            ArrayList<T> genomes = new ArrayList<>();
+            genomes.addAll(spec.agents);
             list.add(genomes);
         }
         return list;

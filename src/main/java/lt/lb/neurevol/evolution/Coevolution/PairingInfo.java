@@ -7,7 +7,7 @@ package lt.lb.neurevol.evolution.Coevolution;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class PairingInfo {
 

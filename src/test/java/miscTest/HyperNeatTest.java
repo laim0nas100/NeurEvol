@@ -25,7 +25,7 @@ import org.junit.*;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class HyperNeatTest {
 

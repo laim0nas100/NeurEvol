@@ -9,7 +9,7 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
 public class Agent implements Cloneable{
     public String id;

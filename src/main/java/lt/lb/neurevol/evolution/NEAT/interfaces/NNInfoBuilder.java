@@ -9,7 +9,7 @@ import lt.lb.neurevol.neural.NNInfo;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public interface NNInfoBuilder {
 

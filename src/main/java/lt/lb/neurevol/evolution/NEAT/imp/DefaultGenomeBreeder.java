@@ -14,7 +14,7 @@ import lt.lb.neurevol.evolution.NEAT.*;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentBreeder;
 
-public class DefaultGenomeBreeder implements AgentBreeder {
+public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
 
     public double CROSSOVER = 0.7;
 
@@ -35,7 +35,7 @@ public class DefaultGenomeBreeder implements AgentBreeder {
     }
 
     @Override
-    public Agent breedChild(List<Agent> list) {
+    public Genome breedChild(List<Genome> list) {
         int size = list.size();
         Genome child;
         if (size > 1 && F.RND.RND.nextDouble() < CROSSOVER) {

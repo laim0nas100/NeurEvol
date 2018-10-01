@@ -16,7 +16,7 @@ import lt.lb.neurevol.neural.NeuralNetwork;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class HGenome extends Genome {
 

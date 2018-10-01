@@ -14,7 +14,7 @@ import lt.lb.neurevol.neural.NeuronInfo;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class CrossoverList {
 

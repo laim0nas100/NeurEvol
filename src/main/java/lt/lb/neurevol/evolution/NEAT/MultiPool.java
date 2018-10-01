@@ -10,7 +10,7 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.Pool;
 
 /**
  *
- * @author Laimonas-Beniusis-PC
+ * @author laim0nas100
  */
 public class MultiPool implements Pool {
 

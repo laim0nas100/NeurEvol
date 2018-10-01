@@ -11,7 +11,7 @@ import lt.lb.commons.misc.*;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class SubstrateNeuronLayer extends SubstrateLayer implements DimentionInfo {
 

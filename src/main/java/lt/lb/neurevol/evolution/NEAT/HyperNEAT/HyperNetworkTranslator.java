@@ -7,7 +7,7 @@ package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public class HyperNetworkTranslator {
 

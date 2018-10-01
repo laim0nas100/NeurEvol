@@ -7,7 +7,7 @@ package lt.lb.neurevol.evolution.NEAT.interfaces;
 
 /**
  *
- * @author Lemmin
+ * @author laim0nas100
  */
 public interface Fitness extends Comparable<Fitness>{
 
