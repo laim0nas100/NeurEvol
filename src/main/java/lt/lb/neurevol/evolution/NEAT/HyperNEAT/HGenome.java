@@ -8,7 +8,7 @@ package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 import java.util.HashMap;
 import java.util.Map;
 import lt.lb.commons.Log;
-import lt.lb.commons.misc.F;
+import lt.lb.commons.F;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.ActivationFunction;
 import lt.lb.neurevol.neural.NNInfo;

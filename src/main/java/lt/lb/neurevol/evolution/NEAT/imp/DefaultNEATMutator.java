@@ -12,7 +12,7 @@ import java.util.*;
 import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.evolution.NEAT.Gene;
 import lt.lb.neurevol.evolution.NEAT.Genome;
-import lt.lb.commons.misc.F;
+import lt.lb.commons.F;
 import lt.lb.commons.misc.RandomDistribution;
 import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
@@ -42,9 +42,10 @@ public class DefaultNEATMutator implements AgentMutator<Genome> {
     public double MUT_NODE = 0.6;
     public double weightCap = 20;
     
-    public RandomDistribution rnd = ()->F.RND.RND.nextDouble();
+    public RandomDistribution rnd;
 
-    public DefaultNEATMutator() {
+    public DefaultNEATMutator(RandomDistribution r) {
+        rnd = r;
         this.innovation = new ArrayBasedCounter(1);
     }
 

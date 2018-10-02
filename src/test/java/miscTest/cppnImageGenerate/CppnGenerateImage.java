@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import lt.lb.commons.ArrayOp;
 import lt.lb.commons.Log;
-import lt.lb.commons.misc.F;
+import lt.lb.commons.F;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.misc.Pos;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HGenome;

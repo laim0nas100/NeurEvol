@@ -5,6 +5,7 @@
  */
 package miscTest;
 
+import lt.lb.commons.F;
 import java.util.*;
 import lt.lb.commons.Log;
 import lt.lb.commons.containers.Pair;
@@ -132,9 +133,11 @@ public class NewEmptyJUnitTest {
         for (int i = 0; i < size; i++) {
             list.add(i);
         }
-
+        Random r = new Random(12);
+        RandomDistribution rnd = RandomDistribution.uniform(() -> r.nextDouble());
 //        Log.print(list);
-        F.RND.seededShuffle(list, F.RND.RND);
+
+        rnd.shuffle(list);
 //        Log.print(list);
         return list;
 

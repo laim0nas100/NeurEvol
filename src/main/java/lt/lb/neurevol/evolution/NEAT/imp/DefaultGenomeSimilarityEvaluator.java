@@ -5,7 +5,7 @@
  */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
-import lt.lb.commons.misc.F;
+import lt.lb.commons.F;
 import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.CrossoverList;
 import lt.lb.neurevol.evolution.NEAT.Genome;

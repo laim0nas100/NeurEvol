@@ -9,7 +9,7 @@ import lt.lb.neurevol.neural.NeuralNetwork;
 import lt.lb.neurevol.neural.ActivationFunction;
 import lt.lb.neurevol.neural.NeuronInfo;
 import java.util.*;
-import lt.lb.commons.misc.F;
+import lt.lb.commons.F;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HGenome;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 

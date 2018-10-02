@@ -5,6 +5,7 @@
  */
 package miscTest;
 
+import java.util.Random;
 import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.neural.NeuralNetwork;
@@ -21,6 +22,7 @@ import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTra
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
 import lt.lb.neurevol.evolution.NEAT.imp.DefaultNEATMutator;
 import lt.lb.commons.misc.Interval;
+import lt.lb.commons.misc.RandomDistribution;
 import org.junit.*;
 
 /**
@@ -77,9 +79,11 @@ public class HyperNeatTest {
         nl3.type = SLayerType.OUTPUT;
         nl1.connectTo(nl2);
         nl2.connectTo(nl3);
-
+        Random r = new Random(12);
+        RandomDistribution rnd = RandomDistribution.uniform(()->r.nextDouble());
+        
         Genome g = new Genome(4, 3);
-        DefaultNEATMutator mutator = new DefaultNEATMutator();
+        DefaultNEATMutator mutator = new DefaultNEATMutator(rnd);
         mutator.mutate(g);
         mutator.mutate(g);
         mutator.mutate(g);
