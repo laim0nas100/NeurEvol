@@ -17,12 +17,16 @@ import lt.lb.neurevol.evolution.Control.NEATConfig;
  */
 public class Species<T extends Agent> implements Serializable {
 
-    public transient int id;
-    public Fitness bestFitness;
+    public transient int id;        // automatically assigned
+    public Fitness bestFitness;     // automatically assigned
     public transient LazyValue<Double> avgInfluence = new LazyValue<>(()-> calculateAverageInfluence());
     public int staleness = 0;
     public ArrayList<T> agents = new ArrayList<>();
 
+    
+    /**
+     * have to inject manually where new object is created
+     */
     public NEATConfig conf;
 
     public T getLeader() {
@@ -52,8 +56,8 @@ public class Species<T extends Agent> implements Serializable {
 
     protected double calculateAverageInfluence() {
         double total = 0.0;
-        for (final T genome : agents) {
-            total += genome.influenceGlobally;
+        for (final T agent : agents) {
+            total += agent.influenceGlobally;
         }
         return total / agents.size();
     }
