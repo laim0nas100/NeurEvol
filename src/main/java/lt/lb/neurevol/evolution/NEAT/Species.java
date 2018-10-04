@@ -7,6 +7,7 @@ package lt.lb.neurevol.evolution.NEAT;
 
 import java.io.Serializable;
 import java.util.*;
+import lt.lb.commons.containers.LazyValue;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 import lt.lb.neurevol.evolution.Control.NEATConfig;
 
@@ -18,7 +19,7 @@ public class Species<T extends Agent> implements Serializable {
 
     public transient int id;
     public Fitness bestFitness;
-    public transient double avgRank = 0.0;
+    public transient LazyValue<Double> avgInfluence = new LazyValue<>(()-> calculateAverageInfluence());
     public int staleness = 0;
     public ArrayList<T> agents = new ArrayList<>();
 
@@ -49,13 +50,12 @@ public class Species<T extends Agent> implements Serializable {
         return dead;
     }
 
-    public double calculateAverageRank() {
+    protected double calculateAverageInfluence() {
         double total = 0.0;
         for (final T genome : agents) {
-            total += genome.globalRank;
+            total += genome.influenceGlobally;
         }
-        avgRank = total / agents.size();
-        return avgRank;
+        return total / agents.size();
     }
 
     public int size() {

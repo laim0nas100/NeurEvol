@@ -15,7 +15,7 @@ public class Agent implements Cloneable{
     public String id;
 
     public Fitness fitness;
-    public transient int globalRank;
+    public transient int influenceGlobally;
     
     @Override
     public Object clone(){

@@ -18,18 +18,4 @@ public class DefaultGenomeSorter implements AgentSorter<Agent> {
 
     public Comparator<Agent> fitnessDescending = fitnessAscending.reversed();
 
-    @Override
-    public void rankGlobaly(Collection<Agent> genomes) {
-        ArrayList<Agent> global = new ArrayList<>();
-
-        global.addAll(genomes);
-        Collections.sort(global, getComparator().reversed());
-
-        int rank = 1;
-        for (Agent g : global) {
-            g.globalRank = rank++;
-        }
-
-    }
-
 }

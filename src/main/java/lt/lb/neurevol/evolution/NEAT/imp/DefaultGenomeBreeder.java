@@ -20,7 +20,7 @@ public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
 
     public RandomDistribution rnd;
     public DefaultGenomeBreeder(RandomDistribution dist){
-        
+        rnd = dist;
     }  
     public double CROSSOVER = 0.7;
 
@@ -45,9 +45,7 @@ public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
         int size = list.size();
         Genome child;
         if (size > 1 && rnd.nextDouble() < CROSSOVER) {
-            ArrayList<Genome> castList = new ArrayList<>(list.size());
-            F.addCast(list, castList);
-            child = crossover(castList);
+            child = crossover(list);
         } else {
             child = (Genome) list.get(rnd.nextInt(size)).clone();
         }

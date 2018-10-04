@@ -30,8 +30,6 @@ public interface NEATConfig<T extends Agent> {
 
     public Species<T> newSpecies();
 
-    public Executor getSequentialExecutor();
-
     public Executor getExecutor();
 
 }
