@@ -9,8 +9,8 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import lt.lb.commons.ArrayBasedCounter;
-import lt.lb.commons.Log;
 import lt.lb.commons.containers.Value;
+import lt.lb.commons.interfaces.StringBuilderActions.ILineAppender;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.threads.Promise;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Pool;
@@ -22,6 +22,8 @@ import lt.lb.neurevol.evolution.Control.NEATConfig;
  */
 public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
+    public ILineAppender debug = ILineAppender.empty;
+    
     public transient NEATConfig<T> conf;
 
     public String poolID = System.currentTimeMillis() + "";
@@ -51,7 +53,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         Comparator<T> cmp = conf.getSorter().getComparator();
         if (this.allTimeBest == null || cmp.compare(g, this.allTimeBest) < 0) {
             if (this.allTimeBest != null) {
-                Log.print("Replace best was:" + this.allTimeBest.fitness + " now:" + g.fitness);
+                debug.appendLine(this.getGeneration()+" Replace best was:" + this.allTimeBest.fitness + " now:" + g.fitness);
             }
 
             this.allTimeBest = g;
@@ -99,7 +101,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         } else {
             species.get(toAssign).agents.add(g);
         }
-//        Log.print("similarity:",bestSimilarity);
+//        debug.appendLine("similarity:",bestSimilarity);
 
     }
 
@@ -148,7 +150,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         LinkedList<Promise> promises = new LinkedList<>();
         //cull species
         int index = 0;
-        Log.print("Cull species");
+        debug.appendLine("Cull species");
         for (Species<T> s : species) {
             s.id = index++;
 
@@ -159,9 +161,9 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
             new Promise(() -> {
                 List<T> cullSpecies = s.cullSpecies(SELECTION, false);
                 for (T g : cullSpecies) {
-                    Log.print("Dead:" + g.fitness);
+                    debug.appendLine("Dead:" + g.fitness);
                     if (g.influenceGlobally == populationSize) {
-                        new Exception("Kill best genome").printStackTrace();
+                        debug.appendLine("Kill best genome.");
                     }
                 }
             }).collect(promises).execute(conf.getExecutor());
@@ -189,9 +191,9 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         species.clear();
         species.addAll(survived);
         survived.clear();
-        Log.print("Survived species", species.size());
+        debug.appendLine("Survived species", species.size());
 
-        Log.print("Remove stale");
+        debug.appendLine("Remove stale");
         T best = null;
         for (Species<T> s : species) {
             if (s.staleness < this.maxStaleness || s.bestFitness.compareTo(this.getCurrentBest().fitness) >= 0 || s.id == bestSpecies.get().id) {
@@ -207,21 +209,13 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         species.addAll(survived);
         survived.clear();
 
-        Log.print("Survived species", species.size());
+        debug.appendLine("Survived species", species.size());
 
         conf.getSorter().rankGlobaly(this.getPopulation());
         promises.clear();
-        for (Species s : species) {
-
-            new Promise(() -> {
-                return s.calculateAverageInfluence();
-            }).collect(promises).execute(conf.getExecutor());
-
-        }
-        resolve(new Promise().waitFor(promises).execute(conf.getExecutor()));
         ArrayList<T> leaders = new ArrayList<>();
 
-        Log.print("Remove weak");
+        debug.appendLine("Remove weak");
         //remove weak
         double sum = this.totalSpeciesAvgRank();
 
@@ -238,7 +232,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         species.addAll(survived);
         survived.clear();
 
-        Log.print("Survived species", species.size());
+        debug.appendLine("Survived species", species.size());
 
         Collections.sort(leaders, conf.getSorter().getComparator());
 //        Collections.sort(leaders, Genome.fitnessDescending);
@@ -246,10 +240,10 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         ConcurrentLinkedDeque<T> newGeneration = new ConcurrentLinkedDeque<>();
 
         promises.clear();
-        Log.print("New generation");
+        debug.appendLine("New generation");
         for (Species<T> s : species) {
             double breed = Math.floor(s.avgInfluence.get() / sum * this.populationSize) - 1;
-            Log.print(s.id, "Child breed:", breed);
+//            debug.appendLine(s.id, "Child breed:", breed);
             LinkedList<Promise> breedPromises = new LinkedList<>();
             for (int i = 0; i < breed;) {
 //                this.breedChild(s.genomes);
@@ -273,7 +267,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
                         new Exception("Kill best genome").printStackTrace();
 
                     }
-                    Log.print("Dead:" + g.fitness);
+                    debug.appendLine("Dead:" + g.fitness);
                 }
 
             }).waitFor(breedPromises).execute(conf.getExecutor());
@@ -283,7 +277,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         resolve(new Promise().waitFor(promises).execute(conf.getExecutor()));
 
         int left = this.populationSize - leaders.size() - newGeneration.size();
-        Log.print("Leaders", leaders.size(), "Left to breed", left);
+        debug.appendLine("Leaders", leaders.size(), "Left to breed", left);
 
         promises.clear();
         //crossover leaders
@@ -300,20 +294,20 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
         }
         resolve(new Promise().waitFor(promises).execute(conf.getExecutor()));
-        Log.print("Assign new generation");
+        debug.appendLine("Assign new generation");
         for (T g : newGeneration) {
             this.assignToSpecies(g);
         }
 
         int specCount = species.size();
-        Log.print("Species:", specCount, "Sim:", this.similarity);
+        debug.appendLine("Species:", specCount, "Sim:", this.similarity);
 
         this.calculateSimilarityThreshold();
 
         double ratio = Math.max(specCount, distinctSpecies);
         ratio /= Math.min(specCount, distinctSpecies);
         if (ratio > 1.5) {//reassign
-            Log.print("Species reassign");
+            debug.appendLine("Species reassign");
 //            recreateSpecies(leaders);
             species.clear();
             for (T g : leaders) {
@@ -389,7 +383,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         this.populationSize = gen.size();
         int i = 0;
         for (T g : gen) {
-            Log.print("Mutating genome " + i);
+            debug.appendLine("Mutating genome " + i);
             i++;
             conf.getMutator().mutate(g);
             assignToSpecies(g);
