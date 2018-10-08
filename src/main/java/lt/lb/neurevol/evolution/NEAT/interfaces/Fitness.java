@@ -8,6 +8,9 @@ package lt.lb.neurevol.evolution.NEAT.interfaces;
 /**
  *
  * @author laim0nas100
+ * Fitness itself is like a number. While comparing fitness, worse should appear first.
+ * When implementing AgentSorter, better should appear first.
+ * 
  */
 public interface Fitness extends Comparable<Fitness>{
 

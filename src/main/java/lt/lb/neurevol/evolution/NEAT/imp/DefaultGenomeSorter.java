@@ -7,9 +7,10 @@ package lt.lb.neurevol.evolution.NEAT.imp;
 
 import java.util.*;
 import lt.lb.neurevol.evolution.NEAT.Agent;
+import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentSorter;
 
-public class DefaultGenomeSorter implements AgentSorter<Agent> {
+public class DefaultGenomeSorter implements AgentSorter<Genome> {
 
     public Comparator<Agent> fitnessAscending = (Agent o1, Agent o2) -> {
 

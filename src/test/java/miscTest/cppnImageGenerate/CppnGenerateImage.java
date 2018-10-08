@@ -118,7 +118,7 @@ public class CppnGenerateImage {
         for (int i = 0; i < info.inputs; i++) {
             F.unsafeRun(() -> {
                 NeuronInfo ni = new NeuronInfo();
-                ni.afType = 4;
+                ni.afType = 0;
                 ni.bias = 0.001d;
                 infos.add(ni);
             });
@@ -127,14 +127,14 @@ public class CppnGenerateImage {
         for (int i = 0; i < info.outputs; i++) {
             F.unsafeRun(() -> {
                 NeuronInfo ni = new NeuronInfo();
-                ni.afType = 0;
+                ni.afType = 2;
                 ni.bias = 0.001d;
                 infos.add(ni);
             });
         }
         F.unsafeRun(() -> {
             NeuronInfo ni = new NeuronInfo();
-            ni.afType = 1;
+            ni.afType = 2;
             ni.bias = 0.0d;
             infos.add(ni);
         });
@@ -166,6 +166,7 @@ public class CppnGenerateImage {
         List<LPixel> pixelList = this.generateImage(net, w, h);
         BufferedImage image = this.parseImage(pixelList, w, h);
         ImageIO.write(image, "png", new File(url));
+        
 
         Log.await(1, TimeUnit.DAYS);
     }
