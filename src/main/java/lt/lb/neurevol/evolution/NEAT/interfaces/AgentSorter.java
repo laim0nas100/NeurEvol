@@ -24,10 +24,20 @@ public interface AgentSorter<T extends Agent> {
      */
     public default Comparator<T> getComparator() {
         return (T o1, T o2) -> {
-            return o2.fitness.compareTo(o1.fitness);
+            return o1.fitness.compareTo(o2.fitness);
+        };
+    }
+    
+    public default Comparator<Fitness> fitnessAscending(){
+        return (Fitness o1, Fitness o2) -> {
+            return o1.compareTo(o2);
         };
     }
 
+    public default Comparator<Fitness> fitnessDescending(){
+        return fitnessAscending().reversed();
+    }
+    
     /**
      * Sorts all agents by fitness and orders it by global influence.
      * Default implementation increments by one.
@@ -37,7 +47,7 @@ public interface AgentSorter<T extends Agent> {
         ArrayList<T> global = new ArrayList<>();
 
         global.addAll(agents);
-        Collections.sort(global, getComparator().reversed());
+        Collections.sort(global, getComparator());
 
         int rank = 1;
         for (T agent : global) {

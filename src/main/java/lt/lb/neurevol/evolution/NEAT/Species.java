@@ -31,12 +31,12 @@ public class Species<T extends Agent> implements Serializable {
 
     public T getLeader() {
 
-        Collections.sort(agents, conf.getSorter().getComparator());
+        Collections.sort(agents, conf.getSorter().getComparator().reversed());
         return agents.get(0);
     }
 
     public List<T> cullSpecies(double selection, boolean leave1) {
-        Collections.sort(agents, conf.getSorter().getComparator());
+        Collections.sort(agents, conf.getSorter().getComparator().reversed());
         int survivors = 1;
         if (!leave1) {
             survivors = (int) Math.ceil(selection * agents.size());

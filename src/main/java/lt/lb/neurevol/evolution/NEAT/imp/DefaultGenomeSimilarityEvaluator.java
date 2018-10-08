@@ -5,8 +5,6 @@
  */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
-import lt.lb.commons.F;
-import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.CrossoverList;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentSimilarityEvaluator;
