@@ -6,7 +6,7 @@
 package lt.lb.neurevol.evolution.NEAT.imp;
 
 import lt.lb.commons.ArrayBasedCounter;
-import lt.lb.commons.misc.RandomDistribution;
+import lt.lb.commons.misc.rng.RandomDistribution;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;

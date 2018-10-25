@@ -5,6 +5,7 @@
  */
 package miscTest;
 
+import lt.lb.commons.misc.rng.RandomDistribution;
 import lt.lb.commons.F;
 import java.util.*;
 import lt.lb.commons.Log;

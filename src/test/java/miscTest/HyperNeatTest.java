@@ -22,7 +22,7 @@ import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTra
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.SubstrateToNNInfoProducerImpl;
 import lt.lb.neurevol.evolution.NEAT.imp.DefaultNEATMutator;
 import lt.lb.commons.misc.Interval;
-import lt.lb.commons.misc.RandomDistribution;
+import lt.lb.commons.misc.rng.RandomDistribution;
 import org.junit.*;
 
 /**

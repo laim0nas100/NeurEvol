@@ -13,7 +13,7 @@ import lt.lb.commons.ArrayBasedCounter;
 import lt.lb.neurevol.evolution.NEAT.Gene;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.commons.F;
-import lt.lb.commons.misc.RandomDistribution;
+import lt.lb.commons.misc.rng.RandomDistribution;
 import lt.lb.neurevol.evolution.NEAT.Agent;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
 
