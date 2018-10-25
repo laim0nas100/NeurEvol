@@ -9,9 +9,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--<commons-lb.dir>lt.lb.commons</commons-lb.dir>-->
-        <commons-lb.dir>com.github.laim0nas100.Commons</commons-lb.dir>
-        <commons-lb.version>28c5ddf1b15a37f10ba2ebea6ca575cd1c92c9e9</commons-lb.version>
+        <commons-lb.dir>lt.lb.commons</commons-lb.dir>
+        <commons-lb.version>local-jar</commons-lb.version>
+        
+        <!--<commons-lb.dir>com.github.laim0nas100.Commons</commons-lb.dir>-->
+        <!--<commons-lb.version>28c5ddf1b15a37f10ba2ebea6ca575cd1c92c9e9</commons-lb.version>-->
     </properties>
     
     <repositories>

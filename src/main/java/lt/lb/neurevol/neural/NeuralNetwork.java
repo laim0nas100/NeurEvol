@@ -8,7 +8,7 @@ package lt.lb.neurevol.neural;
 import java.util.*;
 import lt.lb.commons.Log;
 import lt.lb.commons.containers.collections.PrefillArrayMap;
-import lt.lb.commons.containers.Tuple;
+import lt.lb.commons.containers.tuples.Tuple;
 import lt.lb.commons.F;
 
 /**
@@ -158,6 +158,8 @@ public class NeuralNetwork {
             info.biases.add(ni);
 
         }
+        info.activationMap = activationMap;
+        info.defaultActivation = defaultActivation;
         return info;
 
     }

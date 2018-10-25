@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import lt.lb.commons.containers.Pair;
+import lt.lb.commons.containers.tuples.Pair;
 import lt.lb.commons.F;
 import lt.lb.commons.misc.RandomDistribution;
 import lt.lb.neurevol.evolution.NEAT.*;

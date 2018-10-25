@@ -6,7 +6,7 @@
 package lt.lb.neurevol.evolution.Coevolution;
 
 import java.util.Collection;
-import lt.lb.commons.containers.Pair;
+import lt.lb.commons.containers.tuples.Pair;
 
 /**
  *
