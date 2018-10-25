@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import javax.imageio.ImageIO;
 import lt.lb.commons.ArrayOp;
 import lt.lb.commons.Log;
@@ -103,7 +104,7 @@ public class CppnGenerateImage {
     }
 
     @Test
-    public void makeImage() throws IOException, InterruptedException {
+    public void makeImage() throws IOException, InterruptedException, TimeoutException {
         String url = "image.png";
 
         NNInfo info = new NNInfo();

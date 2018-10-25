@@ -7,7 +7,7 @@ package lt.lb.neurevol.neural;
 
 import java.util.*;
 import lt.lb.commons.Log;
-import lt.lb.commons.containers.PrefillArrayMap;
+import lt.lb.commons.containers.collections.PrefillArrayMap;
 import lt.lb.commons.containers.Tuple;
 import lt.lb.commons.F;
 
