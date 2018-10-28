@@ -69,7 +69,8 @@ public class HGenome extends Genome {
         map.put(i++, Math::sinh);
         map.put(i++, Math::tanh);
 
-        map.put(i++, x -> Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI));//gaussian
+//        map.put(i++, x -> Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI));//gaussian
+        map.put(i++, x -> Math.pow(Math.exp(-((x * x) / 2)), 1 / (Math.sqrt(2 * Math.PI))));
         map.put(i++, x -> Math.abs(x));
         map.put(i++, x -> x % 1);
         return map;

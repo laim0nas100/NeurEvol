@@ -35,7 +35,7 @@ public class DefaultHyperNEATMutator implements AgentMutator<Genome> {
         if (rnd.nextDouble() < MUTATE_ACTIVE_FUNCTION) {
             int index = rnd.nextInt(0,genome.bias.size());
             NeuronInfo get = genome.bias.get(index);
-            get.afType = rnd.nextInt(0,Genome.activationMap.size());
+            get.afType = rnd.pickRandom(genome.functions.getG1().keySet());
             genome.needUpdate = true;
         }
         neatMutator.mutate(genome);
