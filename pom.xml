@@ -13,7 +13,7 @@
         <!--<commons-lb.version>local-jar</commons-lb.version>-->
         
         <commons-lb.dir>com.github.laim0nas100.Commons</commons-lb.dir>
-        <commons-lb.version>b062e7c0ab8a8f9a08a3a1986cbaff4c8adb515d</commons-lb.version>
+        <commons-lb.version>5119188c7601f79d86dfddb0d97adb02d45e5aa3</commons-lb.version>
     </properties>
     
     <repositories>

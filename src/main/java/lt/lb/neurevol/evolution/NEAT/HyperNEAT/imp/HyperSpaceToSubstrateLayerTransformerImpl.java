@@ -17,7 +17,7 @@ public class HyperSpaceToSubstrateLayerTransformerImpl implements HyperSpaceToSu
 
         Interval[] layerMinMax = new Interval[space.dimensions.length - 1];
         for (int i = 0; i < layerMinMax.length; i++) {
-            layerMinMax[i] = new Interval(0, space.dimensions[i]);
+            layerMinMax[i] = new Interval(0d, (double)space.dimensions[i]);
         }
         SubstrateNeuronLayer layer = new SubstrateNeuronLayer();
         layer.layerMinMax = layerMinMax;
