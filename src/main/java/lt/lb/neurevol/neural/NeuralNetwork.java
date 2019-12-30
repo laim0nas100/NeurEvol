@@ -10,6 +10,7 @@ import lt.lb.commons.Log;
 import lt.lb.commons.containers.collections.PrefillArrayMap;
 import lt.lb.commons.containers.tuples.Tuple;
 import lt.lb.commons.F;
+import lt.lb.neurevol.evolution.Control.Func;
 
 /**
  *
@@ -25,7 +26,7 @@ public class NeuralNetwork {
     }
 
     public NeuralNetwork(int inputs, int outputs, Collection<? extends Synapse> genes, Collection<NeuronInfo> biases) {
-        this(inputs, outputs, genes, biases, new HashMap<>(), F::sigmoid);
+        this(inputs, outputs, genes, biases, new HashMap<>(), Func::sigmoid);
     }
 
     public NeuralNetwork(int inputs, int outputs, Collection<? extends Synapse> links, Collection<NeuronInfo> biases,

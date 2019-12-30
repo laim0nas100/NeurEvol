@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lt.lb.commons.Log;
 import lt.lb.commons.F;
+import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.ActivationFunction;
 import lt.lb.neurevol.neural.NNInfo;
@@ -62,7 +63,7 @@ public class HGenome extends Genome {
     public static Map<Integer, ActivationFunction> getDefaultActivationMap() {
         HashMap<Integer, ActivationFunction> map = new HashMap<>();
         int i = 0;
-        map.put(i++, F::sigmoid);
+        map.put(i++, Func::sigmoid);
         map.put(i++, x -> x);
         map.put(i++, x -> -x);
         map.put(i++, Math::sin);

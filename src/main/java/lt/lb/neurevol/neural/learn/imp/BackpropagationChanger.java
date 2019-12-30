@@ -7,7 +7,7 @@ package lt.lb.neurevol.neural.learn.imp;
 
 import java.util.*;
 import java.util.function.Predicate;
-import lt.lb.commons.containers.Value;
+import lt.lb.commons.containers.values.Value;
 import lt.lb.commons.F;
 import lt.lb.neurevol.neural.*;
 import lt.lb.neurevol.neural.learn.NeuralNetworkChanger;

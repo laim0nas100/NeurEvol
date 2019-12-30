@@ -6,9 +6,9 @@
 package lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp;
 
 import java.util.*;
-import lt.lb.commons.F;
 import lt.lb.commons.containers.tuples.Pair;
 import lt.lb.commons.misc.*;
+import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.*;
 import lt.lb.neurevol.neural.*;
 
@@ -23,7 +23,7 @@ public class SubstrateToNNInfoProducerImpl implements SubstrateToNNInfoProducer 
         info.activationMap = HGenome.getDefaultActivationMap();
         int inputs = 0;
         int outputs = 0;
-        info.defaultActivation = F::sigmoid;
+        info.defaultActivation = Func::sigmoid;
 
         for (SubstrateLayer layer : subs.getTypeLayers(SubstrateLayer.SLayerType.INPUT)) {
             SubstrateNeuronLayer l = (SubstrateNeuronLayer) layer;

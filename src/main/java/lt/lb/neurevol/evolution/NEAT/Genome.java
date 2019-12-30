@@ -11,6 +11,7 @@ import lt.lb.neurevol.neural.NeuronInfo;
 import java.util.*;
 import lt.lb.commons.F;
 import lt.lb.commons.containers.tuples.Tuple;
+import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HGenome;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 
@@ -21,7 +22,7 @@ import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 public class Genome extends Agent implements Cloneable {
 
     public static Map<Integer, ActivationFunction> activationMap = HGenome.getDefaultActivationMap();
-    public static ActivationFunction defaultActivationFunction = F::sigmoid;
+    public static ActivationFunction defaultActivationFunction = Func::sigmoid;
 
     public PriorityQueue<Gene> genes = new PriorityQueue<>();
     protected transient NeuralNetwork network;
@@ -29,10 +30,10 @@ public class Genome extends Agent implements Cloneable {
 
     public int input, output;
     public transient boolean needUpdate = false;
-    public transient Tuple<Map<Integer,ActivationFunction>,ActivationFunction> functions = new Tuple<>(Genome.activationMap,F::sigmoid);
+    public transient Tuple<Map<Integer,ActivationFunction>,ActivationFunction> functions = new Tuple<>(Genome.activationMap,Func::sigmoid);
 
     public Genome(int input, int output) {
-        this(input, output,new Tuple<>(Genome.activationMap,F::sigmoid));
+        this(input, output,new Tuple<>(Genome.activationMap,Func::sigmoid));
     }
     
     public Genome(int input, int output, Tuple<Map<Integer,ActivationFunction>,ActivationFunction> functions) {

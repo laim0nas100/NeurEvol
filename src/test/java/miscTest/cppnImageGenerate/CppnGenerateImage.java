@@ -19,6 +19,7 @@ import lt.lb.commons.Log;
 import lt.lb.commons.F;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.misc.Pos;
+import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HGenome;
 import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuralNetwork;
@@ -110,7 +111,7 @@ public class CppnGenerateImage {
         NNInfo info = new NNInfo();
         info.inputs = 3;
         info.outputs = 1;
-        info.defaultActivation = F::sigmoid;
+        info.defaultActivation = Func::sigmoid;
         info.activationMap = HGenome.getDefaultActivationMap();
 
         ArrayList<NeuronInfo> infos = new ArrayList<>();

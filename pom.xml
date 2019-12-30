@@ -9,11 +9,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--<commons-lb.dir>lt.lb.commons</commons-lb.dir>-->
-        <!--<commons-lb.version>local-jar</commons-lb.version>-->
+        <commons-lb.dir>lt.lb.commons</commons-lb.dir>
+        <commons-lb.version>local-jar</commons-lb.version>
         
-        <commons-lb.dir>com.github.laim0nas100.Commons</commons-lb.dir>
-        <commons-lb.version>17b8f88fd011f159cba8cdbf40e7ee1aabb6e1a3</commons-lb.version>
+        <!--<commons-lb.dir>com.github.laim0nas100.Commons</commons-lb.dir>-->
+        <!--<commons-lb.version>17b8f88fd011f159cba8cdbf40e7ee1aabb6e1a3</commons-lb.version>-->
     </properties>
     
     <repositories>
@@ -55,6 +55,11 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
-   
+        <dependency>
+            <groupId>lt.lb.commons</groupId>
+            <artifactId>commonslb-collections</artifactId>
+            <version>local-jar</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

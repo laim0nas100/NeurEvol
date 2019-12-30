@@ -6,6 +6,8 @@
 package miscTest;
 
 import java.util.Random;
+import lt.lb.commons.Log;
+import lt.lb.commons.ReflectionUtils;
 import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.neural.NeuralNetwork;
@@ -15,7 +17,6 @@ import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HyperSpace;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HyperNeuron;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.ConnectionProducer;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.Substrate;
-import lt.lb.commons.Tracer;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.SubstrateLayer.SLayerType;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.imp.HyperSpaceToSubstrateLayerTransformerImpl;
@@ -57,8 +58,6 @@ public class HyperNeatTest {
     // public void hello() {}
     @Test
     public void testSubstrate() throws Exception {
-
-        Tracer t = Tracer.get("");
 
         HyperSpace sp1 = new HyperSpace(2, 1, 1);
 
@@ -123,7 +122,7 @@ public class HyperNeatTest {
         };
         NNInfo produce = prod.produce(subs, net, conProd);
 
-        t.dump(produce.links);
+        Log.print(ReflectionUtils.reflectionString(produce.links, 3));
 //        t.dump(subs.produceLinks());
         Thread.sleep(5000);
 

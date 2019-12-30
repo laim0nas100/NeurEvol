@@ -6,7 +6,7 @@
 package lt.lb.neurevol.evolution.NEAT.imp;
 
 import lt.lb.commons.F;
-import lt.lb.commons.containers.Value;
+import lt.lb.commons.containers.values.Value;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 
 /**

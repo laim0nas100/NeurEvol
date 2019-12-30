@@ -7,7 +7,7 @@ package lt.lb.neurevol.evolution.NEAT;
 
 import java.io.Serializable;
 import java.util.*;
-import lt.lb.commons.containers.LazyValue;
+import lt.lb.commons.containers.caching.LazyValue;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
 import lt.lb.neurevol.evolution.Control.NEATConfig;
 
