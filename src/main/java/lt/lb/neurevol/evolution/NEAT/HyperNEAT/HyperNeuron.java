@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 
 import lt.lb.commons.F;
@@ -37,10 +32,15 @@ public class HyperNeuron extends NeuronInfo implements Cloneable {
         super();
         this.position = pos;
     }
+    
+    protected HyperNeuron(HyperNeuron neur){
+        super(neur);
+        this.id = neur.id;
+        this.position = neur.position;
+        
+    }
 
-    @Override
-    public Object clone() {
-
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    public HyperNeuron clone() {
+        return new HyperNeuron(this);
     }
 }

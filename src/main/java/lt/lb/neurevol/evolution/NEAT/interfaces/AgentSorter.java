@@ -18,40 +18,36 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
  */
 public interface AgentSorter<T extends Agent> {
 
+    public Fitness evaluateFitness(T agent);
+    
     /**
      * Better agent should appear before worse agent
      * @return Comparator which compares agents' fitness
      */
     public default Comparator<T> getComparator() {
         return (T o1, T o2) -> {
-            return o1.fitness.compareTo(o2.fitness);
+            return evaluateFitness(o1).compareTo(evaluateFitness(o2));
         };
     }
     
-    public default Comparator<Fitness> fitnessAscending(){
-        return (Fitness o1, Fitness o2) -> {
-            return o1.compareTo(o2);
-        };
-    }
-
-    public default Comparator<Fitness> fitnessDescending(){
-        return fitnessAscending().reversed();
-    }
+    public void startGeneration(int gen);
+    
+    public int globalRank(T agent);
+    
+    public void setGlobalRank(int generation,T agent,int rank);
     
     /**
      * Sorts all agents by fitness and orders it by global influence.
      * Default implementation increments by one.
      * @param agents 
      */
-    public default void rankGlobaly(Collection<T> agents) {
-        ArrayList<T> global = new ArrayList<>();
-
-        global.addAll(agents);
+    public default void rankGlobaly(int generation, Collection<T> agents) {
+        ArrayList<T> global = new ArrayList<>(agents);
         Collections.sort(global, getComparator());
 
         int rank = 1;
         for (T agent : global) {
-            agent.influenceGlobally = rank++;
+            setGlobalRank(generation, agent, rank);
         }
 
     }

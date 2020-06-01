@@ -18,7 +18,7 @@ import lt.lb.neurevol.evolution.Control.NEATConfig;
 public class Species<T extends Agent> implements Serializable {
 
     public transient int id;        // automatically assigned
-    public Fitness bestFitness;     // automatically assigned
+    public T best;     // automatically assigned
     public transient LazyValue<Double> avgInfluence = new LazyValue<>(()-> calculateAverageInfluence());
     public int staleness = 0;
     public ArrayList<T> agents = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Species<T extends Agent> implements Serializable {
     protected double calculateAverageInfluence() {
         double total = 0.0;
         for (final T agent : agents) {
-            total += agent.influenceGlobally;
+            total += conf.getSorter().globalRank(agent);
         }
         return total / agents.size();
     }

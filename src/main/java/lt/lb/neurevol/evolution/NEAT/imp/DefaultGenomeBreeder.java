@@ -5,18 +5,17 @@
  */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import lt.lb.commons.containers.tuples.Pair;
-import lt.lb.commons.F;
 import lt.lb.commons.misc.rng.RandomDistribution;
 import lt.lb.neurevol.evolution.NEAT.*;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentBreeder;
 
-public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
+public abstract class DefaultGenomeBreeder implements AgentBreeder<Genome> {
 
     public RandomDistribution rnd;
     public DefaultGenomeBreeder(RandomDistribution dist){
@@ -51,5 +50,8 @@ public class DefaultGenomeBreeder implements AgentBreeder<Genome> {
         }
         return Arrays.asList(child);
     }
+
+    @Override
+    public abstract Collection<Genome> initializeGeneration();
 
 }

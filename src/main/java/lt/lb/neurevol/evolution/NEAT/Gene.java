@@ -1,27 +1,35 @@
 package lt.lb.neurevol.evolution.NEAT;
 
 import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.ArrayOp;
 import lt.lb.neurevol.neural.Synapse;
 
-public class Gene extends Synapse implements Comparable, Cloneable {
+public class Gene extends Synapse implements Comparable {
 
     public boolean en = true;
     public int[] inn = null;
 
     public Gene(int in, int out) {
-        this.in = in;
-        this.out = out;
+        this(in, out, 0);
+    }
+
+    public Gene(int in, int out, double w) {
+        super(in, out, w);
+    }
+
+    protected Gene(Gene gene) {
+        super(gene);
+        this.en = gene.en;
+        this.inn = ArrayOp.clone(gene.inn);
+
     }
 
     public Gene() {
     }
 
     @Override
-    public Object clone() {
-        final Gene gene;
-        gene = (Gene) super.clone();
-
-        return gene;
+    public Gene clone() {
+        return new Gene(this);
     }
 
     @Override

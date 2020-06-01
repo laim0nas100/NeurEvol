@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT.imp;
 
+import java.util.Map;
 import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.containers.tuples.Tuple;
 import lt.lb.commons.misc.rng.RandomDistribution;
+import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.evolution.NEAT.interfaces.AgentMutator;
+import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
+import lt.lb.neurevol.neural.ActivationFunction;
 
 /**
  *
@@ -22,6 +22,7 @@ public class DefaultHyperNEATMutator implements AgentMutator<Genome> {
     public RandomDistribution rnd;
     public double MUTATE_ACTIVE_FUNCTION = 0.3;
     public AgentMutator neatMutator;
+    public Tuple<Map<Integer, ActivationFunction>, ActivationFunction> functions = new Tuple<>(Genome.activationMap, Func::sigmoid);
 
 
     public DefaultHyperNEATMutator(RandomDistribution r){
@@ -35,7 +36,7 @@ public class DefaultHyperNEATMutator implements AgentMutator<Genome> {
         if (rnd.nextDouble() < MUTATE_ACTIVE_FUNCTION) {
             int index = rnd.nextInt(0,genome.bias.size());
             NeuronInfo get = genome.bias.get(index);
-            get.afType = rnd.pickRandom(genome.functions.getG1().keySet());
+            get.afType = rnd.pickRandom(functions.getG1().keySet());
             genome.needUpdate = true;
         }
         neatMutator.mutate(genome);

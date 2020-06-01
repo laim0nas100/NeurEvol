@@ -1,31 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT;
 
-import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
+import lt.lb.commons.interfaces.CloneSupport;
 
 /**
  *
  * @author laim0nas100
  */
-public class Agent implements Cloneable{
+public class Agent implements CloneSupport<Agent>{
     public String id;
 
-    public Fitness fitness;
-    public transient int influenceGlobally;
+    public Agent(){
+        
+    }
+    
+    protected Agent(Agent agent){
+        this.id = agent.id;
+    }
     
     @Override
-    public Object clone(){
-        
-        try {
-            Agent agent = (Agent) super.clone();
-            return agent;
-        } catch (CloneNotSupportedException ex) {
-            throw new AssertionError();
-        }
-        
+    public Agent clone(){
+        return new Agent(this);
     }
 }

@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.neural;
+
+import lt.lb.commons.interfaces.CloneSupport;
 
 /**
  *
  * @author laim0nas100
  */
-public class NeuronInfo implements Cloneable {
+public class NeuronInfo implements CloneSupport<NeuronInfo> {
 
     public Double bias;
     public Integer afType;
@@ -18,16 +15,15 @@ public class NeuronInfo implements Cloneable {
         bias = 0d;
         afType = null;
     }
+    
+    protected NeuronInfo(NeuronInfo neur){
+        this.bias = neur.bias;
+        this.afType = neur.afType;
+    }
 
     @Override
-    public Object clone() {
-        NeuronInfo b = null;
-        try {
-            b = (NeuronInfo) super.clone();
-        } catch (CloneNotSupportedException ex) {
-            ex.printStackTrace();
-        }
-        return b;
+    public NeuronInfo clone() {
+        return new NeuronInfo(this);
     }
 
 }

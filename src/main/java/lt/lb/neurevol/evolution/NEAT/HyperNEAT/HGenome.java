@@ -7,8 +7,6 @@ package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 
 import java.util.HashMap;
 import java.util.Map;
-import lt.lb.commons.Log;
-import lt.lb.commons.F;
 import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.neurevol.neural.ActivationFunction;
@@ -34,6 +32,14 @@ public class HGenome extends Genome {
         this.conProducer = conProd;
 
     }
+    
+    protected HGenome(HGenome gen){
+        super(gen);
+        this.subs = gen.subs;
+        this.nnProducer = gen.nnProducer;
+        this.conProducer = gen.conProducer;
+        
+    }
 
     public NeuralNetwork generateEvaluatingNetwork() {
         return new NeuralNetwork(this.getNNInfo());
@@ -56,8 +62,8 @@ public class HGenome extends Genome {
     }
 
     @Override
-    public Object clone() {
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    public HGenome clone() {
+        return new HGenome(this);
     }
 
     public static Map<Integer, ActivationFunction> getDefaultActivationMap() {

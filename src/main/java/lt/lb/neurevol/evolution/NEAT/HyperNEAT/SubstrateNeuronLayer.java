@@ -54,7 +54,7 @@ public class SubstrateNeuronLayer extends SubstrateLayer implements DimentionInf
         } else {
             visited.add(this.ID);
         }
-
+        
         for (SubstrateLayer l : this.connectedFrom.values()) {
             if (l instanceof SubstrateNeuronLayer) {
                 SubstrateNeuronLayer layer = (SubstrateNeuronLayer) l;

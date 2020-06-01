@@ -15,6 +15,8 @@ import lt.lb.neurevol.evolution.NEAT.Agent;
 public interface Pool<T extends Agent> {
 
     public Collection<T> getPopulation();
+    
+    public default void beforeNewGeneration(){};
 
     public default List<List<T>> getSubpopulations() {
         ArrayList<List<T>> list = new ArrayList<>();
