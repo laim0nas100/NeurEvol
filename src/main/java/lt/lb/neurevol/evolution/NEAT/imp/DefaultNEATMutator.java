@@ -9,7 +9,7 @@ import lt.lb.neurevol.neural.NeuralNetwork;
 import lt.lb.neurevol.neural.Neuron;
 import lt.lb.neurevol.neural.NeuronInfo;
 import java.util.*;
-import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.misc.ArrayBasedCounter;
 import lt.lb.neurevol.evolution.NEAT.Gene;
 import lt.lb.neurevol.evolution.NEAT.Genome;
 import lt.lb.commons.misc.rng.RandomDistribution;

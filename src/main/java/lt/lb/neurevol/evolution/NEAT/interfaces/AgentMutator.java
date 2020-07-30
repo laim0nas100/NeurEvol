@@ -1,6 +1,6 @@
 package lt.lb.neurevol.evolution.NEAT.interfaces;
 
-import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.misc.ArrayBasedCounter;
 import lt.lb.neurevol.evolution.NEAT.Agent;
 
 /**

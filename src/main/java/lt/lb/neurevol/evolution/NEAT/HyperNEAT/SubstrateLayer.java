@@ -7,7 +7,7 @@ package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 
 import java.util.HashMap;
 import java.util.Map;
-import lt.lb.commons.UUIDgenerator;
+import lt.lb.commons.misc.UUIDgenerator;
 
 /**
  *

@@ -1,7 +1,7 @@
 package lt.lb.neurevol.evolution.NEAT.imp;
 
 import java.util.Map;
-import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.misc.ArrayBasedCounter;
 import lt.lb.commons.containers.tuples.Tuple;
 import lt.lb.commons.misc.rng.RandomDistribution;
 import lt.lb.neurevol.evolution.Control.Func;

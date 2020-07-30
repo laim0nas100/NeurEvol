@@ -1,6 +1,6 @@
 package lt.lb.neurevol.evolution.NEAT;
 
-import lt.lb.commons.ArrayBasedCounter;
+import lt.lb.commons.misc.ArrayBasedCounter;
 import lt.lb.commons.ArrayOp;
 import lt.lb.neurevol.neural.Synapse;
 

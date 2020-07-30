@@ -7,7 +7,7 @@ package miscTest;
 
 import java.util.Random;
 import lt.lb.commons.Log;
-import lt.lb.commons.ReflectionUtils;
+import lt.lb.commons.misc.ReflectionUtils;
 import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.neural.NeuralNetwork;
