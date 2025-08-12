@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package miscTest;
 
 import java.util.*;
-import lt.lb.commons.Log;
+import lt.lb.commons.DLog;
 import lt.lb.commons.containers.tuples.Pair;
 import lt.lb.neurevol.evolution.Coevolution.CompleteRelative;
 import lt.lb.neurevol.evolution.Coevolution.PairingInfo;
@@ -45,9 +40,9 @@ public class NewEmptyJUnitTest {
     public void testPairing() throws InterruptedException {
         CompleteRelative rel = new CompleteRelative();
         Collection<Pair<PairingInfo>> pairs = rel.producePairs(10, 20);
-        Log.print(pairs.size());
+        DLog.print(pairs.size());
         for (Pair<PairingInfo> p : pairs) {
-            Log.print(p);
+            DLog.print(p);
         }
 //        Log.close();
     }
@@ -57,7 +52,7 @@ public class NewEmptyJUnitTest {
         Interval in = new Interval(0d, 1d);
         Interval[] inn = new Interval[]{new Interval(0d, 800d), new Interval(0d, 600d)};
         Pos pos = new Pos(400, 20);
-        Log.print(Arrays.asList(pos.normalized(inn, -1, 1)));
+        DLog.print(Arrays.asList(pos.normalized(inn, -1, 1)));
 
         Thread.sleep(500);
     }

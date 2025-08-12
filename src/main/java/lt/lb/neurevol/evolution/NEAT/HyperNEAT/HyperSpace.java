@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT.HyperNEAT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import lt.lb.commons.Log;
+import lt.lb.commons.DLog;
 import lt.lb.commons.misc.Pos;
 
 /**
@@ -81,7 +76,7 @@ public class HyperSpace {
                 idMap.put(p, i++);
             }
         }
-        Log.println("HYPER NEAT SPACE INIT");
+        DLog.println("HYPER NEAT SPACE INIT");
     }
 
     public Integer getLayerCount() {

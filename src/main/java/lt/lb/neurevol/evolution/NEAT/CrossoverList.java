@@ -1,9 +1,9 @@
 package lt.lb.neurevol.evolution.NEAT;
 
 import lt.lb.commons.misc.ArrayBasedCounter;
-import lt.lb.commons.Log;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import lt.lb.commons.DLog;
 import lt.lb.commons.containers.tuples.Pair;
 import lt.lb.neurevol.neural.NeuronInfo;
 
@@ -64,7 +64,7 @@ public class CrossoverList {
                 }
             }
             if (pair.g1 == null && pair.g2 == null) {
-                Log.print("NULL GENE PAIR", i1, i2);
+                DLog.print("NULL GENE PAIR", i1, i2);
             }
             geneList.add(pair);
         }

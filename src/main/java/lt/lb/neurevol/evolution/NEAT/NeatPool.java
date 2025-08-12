@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT;
 
 import java.io.Serializable;
@@ -14,11 +9,13 @@ import lt.lb.commons.F;
 import lt.lb.commons.misc.UUIDgenerator;
 import lt.lb.commons.containers.values.Value;
 import lt.lb.commons.interfaces.StringBuilderActions.ILineAppender;
-import lt.lb.commons.misc.ExtComparator;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.threads.Promise;
 import lt.lb.neurevol.evolution.NEAT.interfaces.Pool;
 import lt.lb.neurevol.evolution.Control.NEATConfig;
+import lt.lb.readablecompare.Compare;
+import lt.lb.readablecompare.CompareOperator;
+import lt.lb.readablecompare.SimpleCompare;
 
 /**
  *
@@ -56,8 +53,8 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
     private void addBest(T g) {
 
-        ExtComparator<T> cmp = ExtComparator.of(conf.getSorter().getComparator());
-        if (this.allTimeBest == null || cmp.greaterThan(g, this.allTimeBest)) {
+        SimpleCompare<T> cmp = Compare.of(conf.getSorter().getComparator());
+        if (this.allTimeBest == null || cmp.compare(g, CompareOperator.GREATER, allTimeBest)) {
             if (this.allTimeBest != null) {
                 debug.appendLine(this.getGeneration() + " Replace best was:" + this.allTimeBest + " now:" + g);
             }
@@ -158,7 +155,7 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
     @Override
     public void newGeneration() {
-        ExtComparator<T> cmp = ExtComparator.of(conf.getSorter().getComparator());
+        SimpleCompare<T> cmp = Compare.of(conf.getSorter().getComparator());
         Value<Species<T>> bestSpecies = new Value<>();
 
 //        for (Agent g : this.getPopulation()) {
@@ -207,13 +204,13 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
 
         for (Species<T> s : species) {
             if (!s.agents.isEmpty()) {
-                if (s.best == null || cmp.lessThan(s.getLeader(), allTimeBest)) {
+                if (s.best == null || cmp.compare(s.getLeader(), CompareOperator.LESS, allTimeBest)) {
                     s.staleness = 0;
                     s.best = s.getLeader();
                 } else {
                     s.staleness++;
                 }
-                if (bestSpecies.get().best == null || cmp.lessThan(bestSpecies.get().best, s.best)) {
+                if (bestSpecies.get().best == null || cmp.compare(bestSpecies.get().best, CompareOperator.LESS, s.best)) {
                     bestSpecies.set(s);
                 }
                 survived.add(s);
@@ -229,10 +226,10 @@ public class NeatPool<T extends Agent> implements Serializable, Pool<T> {
         T best = null;
 
         for (Species<T> s : species) {
-            if (s.staleness < this.maxStaleness || cmp.greaterThan(getCurrentBest(), s.best) || s.id == bestSpecies.get().id) {
+            if (s.staleness < this.maxStaleness || cmp.compare(getCurrentBest(), CompareOperator.GREATER, s.best) || s.id == bestSpecies.get().id) {
                 survived.add(s);
 
-                if (best == null || cmp.greaterThan(s.getLeader(), best)) {
+                if (best == null || cmp.compare(s.getLeader(), CompareOperator.GREATER, best)) {
                     best = s.getLeader();
                 }
             }

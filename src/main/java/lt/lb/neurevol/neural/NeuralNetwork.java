@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.neural;
 
 import java.util.*;
-import lt.lb.commons.Log;
+import lt.lb.commons.DLog;
 import lt.lb.commons.containers.collections.PrefillArrayMap;
 import lt.lb.commons.containers.tuples.Tuple;
 import lt.lb.commons.F;
+import lt.lb.commons.iteration.For;
+import lt.lb.commons.iteration.general.result.IterMapResult;
 import lt.lb.neurevol.evolution.Control.Func;
 
 /**
@@ -43,7 +40,7 @@ public class NeuralNetwork {
         for (Synapse g : links) {
             Neuron get = neurons.get(g.out);
             if (get == null) {
-                Log.print("NULL NEURON");
+                DLog.print("NULL NEURON");
             } else {
                 get.addLink(g);
             }
@@ -136,7 +133,7 @@ public class NeuralNetwork {
         this.neurons.values().forEach(n -> {
 
             // add weights
-            F.iterate(n.input, (id, weight) -> {
+            For.entries().iterate(n.input, (id, weight) -> {
                   info.links.add(new Synapse(id, n.ID, weight));
               });
 
@@ -148,10 +145,10 @@ public class NeuralNetwork {
             NeuronInfo ni = new NeuronInfo();
             ni.bias = get.bias;
 
-            Optional<Tuple<Integer, ActivationFunction>> iterate = F.find(activationMap, (k, fun) -> fun == get.af);
+            Optional<IterMapResult<Integer, ActivationFunction>> iterate = For.entries().find(activationMap, (k, fun) -> fun == get.af);
 
             if (iterate.isPresent()) {
-                ni.afType = iterate.get().g1;
+                ni.afType = iterate.get().key;
             } else {
                 ni.afType = -1;
             }

@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package miscTest;
 
 import java.util.Random;
-import lt.lb.commons.Log;
+import lt.lb.commons.DLog;
 import lt.lb.commons.misc.ReflectionUtils;
 import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuronInfo;
@@ -122,7 +117,7 @@ public class HyperNeatTest {
         };
         NNInfo produce = prod.produce(subs, net, conProd);
 
-        Log.print(ReflectionUtils.reflectionString(produce.links, 3));
+        DLog.print(ReflectionUtils.reflectionString(produce.links, 3));
 //        t.dump(subs.produceLinks());
         Thread.sleep(5000);
 

@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.neural.learn.imp;
 
 import java.util.*;
 import java.util.function.Predicate;
 import lt.lb.commons.containers.values.Value;
 import lt.lb.commons.F;
+import lt.lb.commons.iteration.For;
 import lt.lb.neurevol.neural.*;
 import lt.lb.neurevol.neural.learn.NeuralNetworkChanger;
 
@@ -33,7 +29,7 @@ public class BackpropagationChanger implements NeuralNetworkChanger {
     @Override
     public NNInfo apply(NNInfo type) {
         Map<Integer, BackNeuron> neurons = new HashMap<>();
-        F.iterate(type.biases, (i, n) -> {
+        For.elements().iterate(type.biases, (i, n) -> {
               BackNeuron bn = new BackNeuron(i);
               bn.af = type.activationMap.getOrDefault(n.afType, type.defaultActivation);
               bn.derivative = this.functionDerivatives.getOrDefault(n.afType, defaultDerivative);
@@ -41,7 +37,7 @@ public class BackpropagationChanger implements NeuralNetworkChanger {
               neurons.put(bn.ID, bn);
           });
 
-        F.iterate(type.links, (i, s) -> {
+        For.elements().iterate(type.links, (i, s) -> {
               BackNeuron get = neurons.get(s.out);
               get.addLink(s);
           });

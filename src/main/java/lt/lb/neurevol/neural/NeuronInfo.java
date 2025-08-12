@@ -1,6 +1,6 @@
 package lt.lb.neurevol.neural;
 
-import lt.lb.commons.interfaces.CloneSupport;
+import lt.lb.commons.clone.CloneSupport;
 
 /**
  *

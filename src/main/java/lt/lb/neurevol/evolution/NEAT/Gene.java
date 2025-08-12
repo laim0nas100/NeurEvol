@@ -1,7 +1,6 @@
 package lt.lb.neurevol.evolution.NEAT;
 
 import lt.lb.commons.misc.ArrayBasedCounter;
-import lt.lb.commons.ArrayOp;
 import lt.lb.neurevol.neural.Synapse;
 
 public class Gene extends Synapse implements Comparable {
@@ -20,7 +19,7 @@ public class Gene extends Synapse implements Comparable {
     protected Gene(Gene gene) {
         super(gene);
         this.en = gene.en;
-        this.inn = ArrayOp.clone(gene.inn);
+        this.inn = gene.inn.clone();
 
     }
 

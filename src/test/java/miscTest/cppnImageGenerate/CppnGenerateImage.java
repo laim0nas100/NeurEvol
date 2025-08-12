@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import javax.imageio.ImageIO;
 import lt.lb.commons.ArrayOp;
-import lt.lb.commons.Log;
+import lt.lb.commons.DLog;
 import lt.lb.commons.F;
 import lt.lb.commons.misc.Interval;
 import lt.lb.commons.misc.Pos;
@@ -25,6 +25,7 @@ import lt.lb.neurevol.neural.NNInfo;
 import lt.lb.neurevol.neural.NeuralNetwork;
 import lt.lb.neurevol.neural.NeuronInfo;
 import lt.lb.neurevol.neural.Synapse;
+import lt.lb.uncheckedutils.Checked;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -118,7 +119,7 @@ public class CppnGenerateImage {
 
         // 2 input 1 output 1 hidden
         for (int i = 0; i < info.inputs; i++) {
-            F.unsafeRun(() -> {
+            Checked.uncheckedRun(() -> {
                 NeuronInfo ni = new NeuronInfo();
                 ni.afType = 0;
                 ni.bias = 0.001d;
@@ -127,20 +128,20 @@ public class CppnGenerateImage {
         }
 
         for (int i = 0; i < info.outputs; i++) {
-            F.unsafeRun(() -> {
+            Checked.uncheckedRun(() -> {
                 NeuronInfo ni = new NeuronInfo();
                 ni.afType = 2;
                 ni.bias = 0.001d;
                 infos.add(ni);
             });
         }
-        F.unsafeRun(() -> {
+        Checked.uncheckedRun(() -> {
             NeuronInfo ni = new NeuronInfo();
             ni.afType = 2;
             ni.bias = 0.0d;
             infos.add(ni);
         });
-        F.unsafeRun(() -> {
+        Checked.uncheckedRun(() -> {
             NeuronInfo ni = new NeuronInfo();
             ni.afType = 4;
             ni.bias = 0.0d;
@@ -170,6 +171,6 @@ public class CppnGenerateImage {
         ImageIO.write(image, "png", new File(url));
         
 
-        Log.await(1, TimeUnit.DAYS);
+        DLog.await(1, TimeUnit.DAYS);
     }
 }

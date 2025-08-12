@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT;
 
 import java.io.Serializable;
 import java.util.*;
-import lt.lb.commons.containers.caching.LazyValue;
-import lt.lb.neurevol.evolution.NEAT.interfaces.Fitness;
+import lt.lb.commons.containers.caching.lazy.LazyValue;
 import lt.lb.neurevol.evolution.Control.NEATConfig;
 
 /**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lt.lb.neurevol.evolution.NEAT;
 
 import lt.lb.neurevol.neural.NeuralNetwork;
@@ -10,7 +5,8 @@ import lt.lb.neurevol.neural.ActivationFunction;
 import lt.lb.neurevol.neural.NeuronInfo;
 import java.util.*;
 import lt.lb.commons.containers.tuples.Tuple;
-import lt.lb.commons.interfaces.CloneSupport;
+import lt.lb.commons.clone.CloneSupport;
+import lt.lb.commons.clone.Cloner;
 import lt.lb.neurevol.evolution.Control.Func;
 import lt.lb.neurevol.evolution.NEAT.HyperNEAT.HGenome;
 
@@ -48,8 +44,8 @@ public class Genome extends Agent {
 
     protected Genome(Genome gen) {
         super(gen);
-        this.genes = CloneSupport.cloneCollectionCast(gen.genes, PriorityQueue::new);
-        this.bias = CloneSupport.cloneCollection(gen.bias, ArrayList::new);
+        this.genes = Cloner.get().cloneCollectionCast(gen.genes, PriorityQueue::new);
+        this.bias = Cloner.get().cloneCollection(gen.bias, ArrayList::new);
         this.input = gen.input;
         this.output = gen.output;
         
